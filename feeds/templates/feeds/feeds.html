@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block head %}
+  <link href="{% static 'css/feeds.css' %}?v=1" rel="stylesheet">
+  <script src="{% static 'js/jquery.bullseye-1.0-min.js' %}"></script>
+  <script src="{% static 'js/feeds.js' %}?v=1"></script>
+{% endblock head %}
+
+{% block body %}
+
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+
+      <div class="page-header">
+        <button type="button" class="btn btn-primary pull-right btn-compose" title="{% trans 'Press Ctrl + P to compose' %}">
+          <span class="glyphicon glyphicon-share-alt"></span> {% trans 'Compose' %}
+        </button>
+        <h1>{% trans 'Feed' %}</h1>
+      </div>
+
+      <div class="panel panel-default panel-feed">
+        <div class="panel-heading">
+          <h3 class="panel-title">{% trans 'Latest posts' %}</h3>
+        </div>
+        <div class="panel-body">
+
+          <div class="compose">
+            <h2>{% trans "Compose a new post" %}</h2>
+            <form role="form" id="compose-form">
+              {% csrf_token %}
+              <input type="hidden" name="last_feed">
+
+     <!--         {% for value, text in form.categorie.field.choices %}
+              <input type="radio" name="emotion" value={{text}} id="sad" class="input-hidden" />
+                <label for="sad">
+                  <img src="//placekitten.com/150/150" alt="" />
+                </label>
+              {% endfor %}   -->
+            
+<!--    <div>
+
+  <div class="row">
+    <form method="get">
+    <div class="form-group">  
+    <div class="col-md-2"><label class="btn "><img src="/image/bijouxC.jpg" alt="..." class="img-thumbnail img-check"><input type="radio" name="chk1" id="item4" value="val1" class="hidden" autocomplete="off"></label></div>
+    <div class="col-md-2"><label class="btn "><img src="/static/img/accessoire.jpg" alt="..." class="img-thumbnail img-check"><input type="radio" name="chk2" id="item4" value="val2" class="hidden" autocomplete="off"></label></div>
+    <div class="col-md-2"><label class="btn "><img src="/static/img/vetement.jpg" alt="..." class="img-thumbnail img-check"><input type="radio" name="chk3" id="item4" value="val3" class="hidden" autocomplete="off"></label></div>
+    <div class="col-md-2"><label class="btn "><img src="/static/img/arts.jpg" alt="..." class="img-thumbnail img-check"><input type="radio" name="chk4" id="item4" value="val4" class="hidden" autocomplete="off"></label></div>
+    </div>
+    <div class="col-md-2"><label class="btn "><img src="/static/img/meuble.jpg" alt="..." class="img-thumbnail img-check"><input type="radio" name="chk5" id="item4" value="val4" class="hidden" autocomplete="off"></label></div>
+  </div>
+    <input type="submit" value="Check Item" class="btn btn-success">
+    
+    </form>
+  </div>  
+
+<script type="text/javascript">
+  $(document).ready(function(e){
+        $(".img-check").click(function(){
+        $(this).toggleClass("check");
+      });
+  });
+</script>
+
+               </div> -->
+
+              <div class="form-group">
+                <textarea class="form-control" rows="3" name="post"></textarea>
+              </div>
+              <div>
+              <label for="logo" class="glyphicon glyphicon-paperclip" >
+              <input type="file" class="attach" id="logo" name="logo" style="display: none;" >
+         
+              </label> 
+              </div> 
+              <div class="form-group">
+                <button type="button" class="btn btn-primary btn-post">
+                  <span class="glyphicon glyphicon-send"></span> {% trans 'Post' %}
+                </button>
+                <button type="button" class="btn btn-default btn-cancel-compose">{% trans 'Cancel' %}</button>
+                <span class="help-block help-count pull-right">255</span>
+              </div>
+            </form>
+          </div>
+          <div class="stream-update">
+            <a href="#"><span class="new-posts"></span> {% trans 'new posts' %}</a>
+          </div>
+          <ul class="stream">
+            {% for feed in feeds %}
+              {% include 'feeds/partial_feed.html' with feed=feed %}
+            {% endfor %}
+          </ul>
+          <div class="load">
+            <img src="{% static 'img/loading.gif' %}">
+          </div>
+          <form method="get" action="{% url 'load' %}" id="load_feed" autocomplete="off">
+            <input type="hidden" name="feed_source" id="feed_source" value="all">
+            <input type="hidden" name="from_feed" value="{{ from_feed }}">
+            <input type="hidden" name="page" value="{{ page }}">
+          </form>
+
+        </div>
+      </div>      
+    </div>
+  </div>
+
+
+
+{% endblock body %}

@@ -1,0 +1,145 @@
+{% load i18n %}
+
+ <button type="button" class="w3-button w3-large w3-circle w3-large w3-ripple w3-teal" data-toggle="modal"  data-target="#myModal1" onmouseover="Affiche_P()" onmouseout="Cache_P()"><i class="glyphicon glyphicon-plus"></i></button>
+
+<span id="idDiv">Attachez produit</span>
+{% load static %}
+<script src="{% static 'js/show.title.js' %}"></script>
+
+  <div id="myModal1" class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+    <div class="modal-dialog ">
+    <div class="modal-content">
+    <div class="modal-header">
+       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <div class="col-md-6">     
+        
+          <h4 class="modal-title" style="margin-top: 20px">Listes des produits </h4>
+        </div>
+        <div class="col-md-6">   
+        <form role="form" method="get" action="{% url 'searchP' %}" class="search" >
+          
+          <div class="form-group">
+           <input type="text" class="form-control typeahead" placeholder="search..." id="recherche" name="recherche" value="{{ request.GET.recherche }}" style="width: 250px">
+              <input type="hidden" name="to" id="to" value="{{ active }}">                 
+          </div>
+       <!--         <button type="submit" class="btn btn-default">Search</button> -->
+          
+        </form>
+        </div> 
+
+    </div>
+    
+  
+
+
+<div class="modal-body" id="modal-body">
+   
+      {% for produit in produitsU %}
+
+          {% if produit.is_favorite == True %}
+
+
+<div class="col-md-4">
+
+    <div class="thumbnail product-small" data-product-id="{{ produit.id }}" data-boutique-id="{{ produit.boutique.id }}" >
+
+       <form role="form" method="post" action="{% url 'send_messageMes' %}" class="sendMes">
+          {% csrf_token %}
+          <input type="hidden" name="to" id="to" value="{{ active }}">
+          <input type="hidden" name="objet" id="objet" value="{{ produit.title }}">
+          <input type="hidden" name="url" id="url" value="{{ produit.id }}">
+          <button type="Submit" >  <img src="{{ produit.logo.url }}"  style="width:200px;height:160px;" class="img-responsive"></button> 
+          
+           <div class="success_message" class="ajax_response" style="float:left"></div>
+ 
+       </form>
+
+      <div class="row" style="margin:5px">
+         <div class="col-md-12 col-md-offset-0">
+           {{ produit.title }} 
+        <span class="btn btn-primary btn-xs" style="float: right;"> {{produit.prix }} Dt</span> <br>
+       
+       </div>
+       </div>
+
+       <form action="{% url 'boutique:DetailView1' produit.id %}" method="get" style="display: inline;">
+        {% csrf_token %}
+        <input type="hidden" name="produit_id" value="{{ produit.id }}" />
+        <button type="submit" class="btn btn-danger btn-xs">
+            <span class="glyphicon glyphicon-zoom-in"></span>&nbsp; View Detail /{{produit.boutique.user}}
+        </button>
+         <input type="hidden" name="username" value="{{ produit.boutique.user }}"/>
+        
+         <input type="hidden" name="objet" value="{{ produit.title}}"/>
+        <input type="hidden" name="url" value="{{ produit.url}}"/>
+        </form>  
+
+       
+
+
+       
+       <a href="#{{ produit.id }}" role="button" class="btn" data-toggle="modal">Popup images</a>
+    </div>
+ 
+</div>
+                              
+              {% endif %}
+
+        {% endfor %}
+
+{% if produitS %}     
+   {% include 'messenger/includes/search_result.html' with produitS=produitS %}
+ {% endif %} 
+      <input type="hidden" name="page" class="page" value="{{ page }}">
+
+   
+ </div>
+
+
+     <div class="modal-footer">
+        <nav aria-label="...">
+          <ul class="pager" data-current-page="1">
+            <li><a href="#" id="prev">&laquo;</a></li>
+          <!--    <div class="numero">    </div> -->
+
+            <li><a href="#" id="next">&raquo;</a></li>
+          </ul>
+        </nav>
+      </div>
+                              
+</div>                                
+</div>
+</div>
+
+<div class="modals">
+  {% for produit in produitsU %}
+    {% if produit.is_favorite == True %}
+
+  <div id="{{ produit.id }}" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            
+      </div>
+        
+            <div class="modal-body1">
+            {% if produit.logo1 %}        <img  product-id="{{ produit.id }}" src="{{ produit.logo1.url }}" style="width:200px;height:150px; margin-left: 35px; margin-bottom: 10px"> <br>  {% endif %}
+            {% if produit.logo2 %}      <img src="{{ produit.logo2.url }}" style="width:200px;height:150px; margin-left: 35px; margin-bottom: 10px"> <br> {% endif %}
+            {% if produit.logo3 %}     <img src="{{ produit.logo3.url }}" style="width:200px;height:150px; margin-left: 35px"> <br> {% endif %}
+            </div>
+        </div>
+      </div>
+    </div>  
+          {% endif %}     
+  {% endfor %}
+</div>
+ 
+
+
+
+
+{% load static %}
+<script src="{% static 'js/second.Popup.js' %}"></script>
+
+

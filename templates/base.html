@@ -1,0 +1,205 @@
+{% load staticfiles i18n %}<!DOCTYPE html>
+
+<style type="text/css">
+
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Boutique{% endblock %}</title>
+    {% load staticfiles %}
+    <link rel="shortcut icon" type="image/png" href="{%  static 'favicon.ico' %}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'discover/css/imported/bootstrap.min.css' %}"/>
+    <!--<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/> -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/test.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/imported/commercant.css' %}"/>
+
+    <script type="text/javascript" src="{% static 'discover/js/imported/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'discover/js/imported/bootstrap.min.js' %}"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'discover/slider/slider.css' %}">
+    <script type="text/javascript" src="{% static 'discover/slider/imported/bootstrap-slider.js' %}"></script>
+    <script src="{% static 'discover/js/imported/jquery.typeahead.bundle.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'shop/css/activate.css' %}">
+    <script src="{% static 'shop/js/activate.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/notification.css' %}">
+    
+     <script src="{% static 'js/notification.js' %}"></script>
+    <script src="{% static 'js/check_messages.js' %}"></script>
+    <script src="{% static 'discover/js/auto.typehead.js' %}"></script>
+
+    <script src="{% static 'js/base.js' %}"></script> 
+
+    <script src="{% static 'discover/slider/slider.js' %}"> </script>
+    <script src="{% static 'discover/js/imported/menu.filter.js' %}"> </script>
+   <link rel="stylesheet" type="text/css" href="{% static 'discover/css/tooltip.user.css' %}"/> 
+   <link rel="stylesheet" type="text/css" href="{% static 'discover/css/imported/menu.filter.css' %}"/> 
+
+<!--        iiiiiiiii        
+  <link href="{% static 'css/feeds.css' %}" rel="stylesheet">
+  <script src="{% static 'js/jquery.bullseye-1.0-min.js' %}"></script>
+  <script src="{% static 'js/feeds.js' %}"></script>  -->
+  <script src="{% static 'css/post.css' %}"></script>
+  <script src="{% static 'js/post.js' %}"></script>
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/comment.css' %}">
+<script type="text/javascript" src="{% static 'js/comment.js' %}"></script>
+  
+  
+    
+    
+  
+</head>
+
+ <body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+
+    <div class="container-fluid">
+
+                <!-- Header -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="{% url 'discover:products' %}">Silver</a> 
+<!--
+  <div class="dropdown show">
+  <a class="btn btn-secondary dropdown-toggle" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Dropdown link
+  </a>
+
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <a class="dropdown-item" href="#">Action</a>
+    <a class="dropdown-item" href="#">Another action</a>
+    <a class="dropdown-item" href="#">Something else here</a>
+  </div>
+</div> -->
+
+                </div>
+
+        <!-- Items -->
+        <div class="collapse navbar-collapse" id="topNavBar">
+            <ul class="nav navbar-nav">
+                <li class="{% block albums_active %}{% endblock %}"><a href="{% url 'boutique:index' %}"><span class="glyphicon glyphicon" aria-hidden="true"></span>&nbsp; Boutique</a></li>
+             
+                        <li role="presentation" {% if produit.is_favorite == True %}class="active"{% endif %}><a href="{% url 'discover:postlist' %}"><span class="glyphicon glyphicon" aria-hidden="true"></span>&nbsp; Discover</a></li>
+
+                  <li class="{% block post_active %}{% endblock %}"><a href="{% url 'postALL' %}"><span class="glyphicon glyphicon" aria-hidden="true"></span>&nbsp;Post</a></li>
+
+            </ul>
+            {% if produits %}
+             <form class="navbar-form navbar-left" role="search" method="get" action="{% url 'discover:search' %}">
+                <div class="form-group">
+                    <input type="text" class="form-control typeahead" placeholder="search..." id="recherche" name="recherche" value="{{ request.GET.recherche }}">
+                    
+                </div>
+                <button type="submit" class="btn btn-default">Search</button>
+          
+            </form>
+             {% endif %}
+             {% if posts %}
+             <form class="navbar-form navbar-left" role="search" method="get" action="{% url 'searchPost' %}">
+                <div class="form-group">
+                    <input type="text" class="form-control typeahead" placeholder="search..." id="recherche1" name="recherche1" value="{{ request.GET.recherche1 }}">
+                    
+                </div>
+                <button type="submit" class="btn btn-default">Search</button>
+          
+            </form>
+             {% endif %}
+
+   <!--         {% if user.is_authenticated %} 
+
+<ul class="nav navbar-nav">
+<li>
+<a href="#" id="notifications" data-container="body" data-toggle="popover" data-placement="bottom" title="Notifications">
+<span class="glyphicon glyphicon-bell"></span>
+</a>
+</li>
+</ul>
+{% endif %}  -->
+   
+<ul class="nav navbar-nav navbar-right">
+
+{% if user.is_authenticated %} 
+
+<ul class="nav navbar-nav">
+<li>
+<a href="#" class="notifications" data-container="body" data-toggle="popover" data-placement="bottom" title="Notifications">
+<span class="glyphicon glyphicon-bell"></span>
+</a>
+</li>
+</ul>
+
+<i  style="font-size:20px;color: white; float: left;margin-top: 12px" >
+<a href="{% url 'inbox' %}" style="font-size:20px;color: #dddddd;" class="fa fa-comments">  </a> 
+</i>
+
+
+<span class="badge tiny " style="  background-color:#FFA07A ;float: left; margin-top: 7px" id="unread-count"></span>
+
+
+
+
+               <li>
+                  <a href="{% url 'profile' user.username %}" style="float: right;">{{ user.profile.get_screen_name }}</a>
+                </li>
+                
+                <li class="dropdown" style="margin-bottom: 10px; float: right;">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    
+                    <li><a href="{% url 'settings' %}">Account Settings</a></li>
+                    
+                    <li><a href="{% url 'logout' %}">Log out </a></li>
+                 
+                </li>
+   {% else %}   
+                <li>
+                  <a href="{% url 'login'  %}">Log in</a>
+                </li>
+     {% endif %}                 
+</ul>
+</div>
+</div>
+</nav>
+<!--           Raniiiiiiiiiiiiiiiiiiiiiiiiiia             -->
+
+
+
+
+
+
+
+<div class="container-fluid" style="padding-top: 70px">                
+{% block body %}
+
+
+
+
+          
+
+{% load static %}
+                
+
+<script src="{% static 'js/notification.js' %}"></script>
+<script src="{% static 'js/check_messages.js' %}"></script>
+<script src="{% static 'discover/js/auto.typehead.js' %}"></script>
+
+
+{% endblock %}
+</div>
+{% include "discover/pagination.html" with page=produits filters=filters %}
+{% include "post/paginationP.html" with page=posts   filtersPost=filtersPost %}
+
+
+</body>
+</html>

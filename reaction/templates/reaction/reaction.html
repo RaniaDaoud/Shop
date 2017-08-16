@@ -1,0 +1,114 @@
+{% load static %}
+ <link rel="stylesheet" type="text/css" href="{% static 'reaction/css/reaction.css' %}"/>
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="stylesheet" type="text/css" href="{% static 'reaction/css/imported/font-awesome.min.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'reaction/css/share.css' %}"/>
+
+
+<div style="margin-bottom: 20px; ">
+ <div id="share-buttons" style="float: left;padding-left: 10px">
+ <div class="tooltip2"><i class="fa fa-share-alt" style="font-size:20px"></i>
+  <span class="tooltiptext2">
+
+<a href="https://www.facebook.com/sharer/sharer.php?u=http://127.0.0.1:8000/discover/produitDetail/{{ produit.id }}/" class="reaction-button facebook" onclick="window.open(this.href, 'facebookwindow','left=20,top=20,width=600,height=500,toolbar=0,resizable=1'); return false;"><img class="img1" src="{% static 'reaction/img/reactions/facebook.png' %}" alt="Facebook" width="20" height="20"></a>
+<a href='https://plus.google.com/share?url=http://127.0.0.1:8000/discover/produitDetail/{{ produit.id }}/' class="reaction-button google" onclick="window.open(this.href, 'facebookwindow','left=20,top=20,width=600,height=500,toolbar=0,resizable=1'); return false;"> <img class="img1" src="{% static 'reaction/img/reactions/google.png' %}" alt="Google" width="20" height="20"> </a>
+     
+ </span>
+ </div>
+ </div>
+  <div >
+      <button data-id="{{ produit.id }}" data-tooltip="tooltip-normal" data-reaction="normal" class="reaction-button normal">
+
+        <span class="tooltip-span tooltip-normal">normal ({{ produit.get_normal }}) </span>
+     
+        <img src="{% static 'reaction/img/reactions/normal.png' %}" alt="" width="20" height="20"> 
+         
+      </button>
+
+      <button data-id="{{ produit.id }}" data-tooltip="tooltip-smile" data-reaction="smile" class="reaction-button smile">
+
+        <span class="tooltip-span tooltip-smile">smile ({{ produit.get_smile }}) </span>
+     
+     
+        <img src="{% static 'reaction/img/reactions/smile.png' %}" alt="" width="20" height="20">
+      </button>
+
+      <button data-id="{{ produit.id }}" data-tooltip="tooltip-love" data-reaction="love" class="reaction-button love">
+
+
+        <span class="tooltip-span tooltip-love">love ({{ produit.get_love }}) </span>
+      
+     
+        <img src="{% static 'reaction/img/reactions/love.png' %}" alt="" width="20" height="20">
+      </button>
+
+      <button data-id="{{ produit.id }}" data-tooltip="tooltip-wish" data-reaction="wish" class="reaction-button wish">
+
+
+        <span class="tooltip-span tooltip-wish">wish ({{ produit.get_wish }}) </span>
+      
+     
+        <img src="{% static 'reaction/img/reactions/wish.png' %}" alt="" width="20" height="20">
+      </button>
+</div>
+
+    
+
+<span class="reactions" style="float: right; margin-right: 5px">
+    {% if produit.get_reaction > 0 %}
+  <span class="badge"> {{ produit.get_reaction }} </span>
+  <!--reaction{% if produit.reaction_set.count > 1 %}s{% endif %}  -->
+    {% endif %}
+</span> 
+ 
+
+  </div> 
+
+
+
+  <script type="text/javascript">
+  /*  
+     function Affiche()
+       {  for (i = 0; i < 4; i++) {
+      document.getElementsByClassName('spanN')[i].style.visibility ='visible';
+       }
+    }
+    function Cache()
+    {  for (i = 0; i < 4; i++) {
+      document.getElementsByClassName('spanN')[i].style.visibility='hidden';
+     }
+    }
+
+    function Affiche1()
+       {  for (i = 0; i < 4; i++) {
+      document.getElementsByClassName('spanS')[i].style.visibility ='visible';
+       }
+    }
+    function Cache1()
+    {  for (i = 0; i < 4; i++) {
+      document.getElementsByClassName('spanS')[i].style.visibility='hidden';
+     }
+    }
+
+    function Affiche2()
+       {  for (i = 0; i < 4; i++) {
+      document.getElementsByClassName('spanL')[i].style.visibility ='visible';
+       }
+    }
+    function Cache2()
+    {  for (i = 0; i < 4; i++) {
+      document.getElementsByClassName('spanL')[i].style.visibility='hidden';
+     }
+    }
+
+    function Affiche3()
+       {  for (i = 0; i < 4; i++) {
+      document.getElementsByClassName('spanW')[i].style.visibility ='visible';
+       }
+    }
+    function Cache3()
+    {  for (i = 0; i < 4; i++) {
+      document.getElementsByClassName('spanW')[i].style.visibility='hidden';
+     }
+    }  */
+  </script>

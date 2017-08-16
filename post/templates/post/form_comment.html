@@ -1,0 +1,36 @@
+<!-- <div class="row comment">
+    <div class="col-md-2">
+        <img src="{{ request.user.profile.get_picture }}" alt="{{ request.user.username }}" class="img-responsive-small img-profile">
+    </div>
+    <div class="col-md-10">
+        <form action="" id="comment-form" method="post"   data-post-id="{{ post.id }}">
+           {% csrf_token %}
+            <div class="form-group">
+                <textarea name="text" id="text" placeholder="write your comment here..."></textarea>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="submit" class="btn btn-sm btn-primary pull-right">
+            </div>
+        </form>        
+    </div>
+</div> -->
+
+    
+<div class="row comment">
+    <div class="col-md-2">
+        <img src="{{ request.user.profile.get_picture }}" alt="{{ request.user.username }}" class="img-responsive-small img-profile" style="height: 70px;width: 70px">
+    </div>
+    <div class="col-md-10">
+     <form action="" id="comment-form" method="post"  data-post-id="{{ post.id }}">
+           {% csrf_token %}
+           <input type="hidden" name="post" value="{{ post }}">
+        <div class="form-group">
+        <textarea name="text" id="text" placeholder="write your comment here..."></textarea>
+         </div>
+          <div class="form-group">
+                <input type="submit" value="submit" class="btn btn-sm btn-primary pull-right">
+          </div>
+        
+      </form>  
+    </div>
+</div> 

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+ <script type="text/javascript" src="{% static 'discover/js/imported/jquery.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'discover/js/imported/bootstrap.min.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'discover/css/accueil.css' %}"/>
+<body>
+
+
+       <!-- <div class="overlay"></div> -->
+    
+        <!-- Sidebar -->
+    <!--    <nav class="navbar navbar-inverse navbar-fixed-top"  role="navigation"> -->
+              <li class="navbar navbar-inverse navbar-fixed-top">
+                    <a href="#">
+                      Silver
+                    </a>
+                </li> 
+            <ul class="nav sidebar-nav" style="margin-top: 70px">
+                
+                <li>
+                    <a href="#">Home</a>
+                </li>
+                <li>
+                    <a href="{% url 'postALL' %}">Posts</a>
+                </li>
+                <li>
+                    <a href="{% url 'discover:postlist' %}">Products</a>
+                </li>
+           <!--     <li>
+                    <a href="#">Team</a>
+                </li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Works <span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li class="dropdown-header">Dropdown heading</li>
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li><a href="#">Separated link</a></li>
+                    <li><a href="#">One more separated link</a></li>
+                  </ul>
+                </li>
+                <li>
+                    <a href="#">Services</a>
+                </li>
+                <li>
+                    <a href="#">Contact</a>
+                </li>
+                <li>
+                    <a href="https://twitter.com/maridlcrmn">Follow me</a>
+                </li>   -->
+            </ul>
+            
+      
+        <!-- /#sidebar-wrapper -->
+
+
+        <!-- Page Content -->
+    <!--    <div id="page-content-wrapper">
+            <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
+                <span class="hamb-top"></span>
+          <span class="hamb-middle"></span>
+        <span class="hamb-bottom"></span>
+            </button> -->
+            <div class="container" style="padding-left: 200px;padding-top: 50px">
+                <!--        <div class=' navbar-inverse'>
+                         
+                               <ul class="nav" >
+                              <li class="active"><a href="#" style="color: grey"><h4><em> Silver Home </em></h4></a></li>
+
+                              
+                               </ul>
+                        
+                          </div>  -->
+                <div class="row">
+                    <div class="col-lg-10 col-lg-offset-1 ">
+                        <h1>Latest Products</h1>
+              {% include 'discover/liste_produits.html' with produits=produits %}
+                        <h1>Latest Posts </h1>   
+              {% include 'discover/liste_posts.html' with posts=posts %}     
+                    </div>
+                </div>
+            </div>
+       
+        <!-- /#page-content-wrapper -->
+
+   
+    <!-- /#wrapper -->
+
+<script>
+/*$(document).ready(function () {
+  var trigger = $('.hamburger'),
+      overlay = $('.overlay'),
+     isClosed = false;
+
+    trigger.click(function () {
+      hamburger_cross();      
+    });
+
+    function hamburger_cross() {
+
+      if (isClosed == true) {          
+        overlay.hide();
+        trigger.removeClass('is-open');
+        trigger.addClass('is-closed');
+        isClosed = false;
+      } else {   
+        overlay.show();
+        trigger.removeClass('is-closed');
+        trigger.addClass('is-open');
+        isClosed = true;
+      }
+  }
+  
+  $('[data-toggle="offcanvas"]').click(function () {
+        $('#wrapper').toggleClass('toggled');
+  });  
+}); */
+</script>
+
+</body>
+</html>

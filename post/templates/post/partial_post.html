@@ -1,0 +1,26 @@
+  {% load i18n %}
+{% load humanize %}   
+     
+       
+
+  <div class="feed-container" style="padding: 10px;">
+  <div class="row" >
+   <div class="col-md-12 col-md-offset-0">
+   <h3> <a href="{% url 'profile' post.user.username %}"><img src="{{ post.user.profile.get_picture }}" class="user" style="width:50px;height: 50px"></a>  
+
+  <a href="{% url 'profile' post.user.username %}" >{{ post.user.profile.get_screen_name }}</a> 
+  
+  </h3>
+  <small>{{ post.date|naturaltime }}</small>
+  <!-- <div style="height: 100px;width: 100px;"> {{ post.categorie.url }} </div> -->
+   
+   {% if post.image %}
+    <img src="/image/{{ post.image }}" style="width:250px;height: 250px;margin-left: 300px;"> <br>
+    {% else %}
+    <img src="/image/{{ post.categorie.logo }}" class="user" style="width:250px;height: 250px;margin-left: 300px"><br>
+    {% endif %} <br>
+    </div>
+    </div>
+     <p>{{ post.post }} </p>
+   ---------------------------------------------
+  </div>

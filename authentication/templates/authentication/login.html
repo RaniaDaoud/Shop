@@ -1,0 +1,63 @@
+
+<html >
+<head>
+
+  <meta charset="UTF-8">
+  <title>Login, Register form</title>
+    {% load staticfiles %}
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+  <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/imported/login.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'js/imported/index.js' %}"/>
+
+
+</head>
+
+<body>
+    <div class="login-box">
+        <div class="lb-header">
+            <a href="{% url 'login' %}" class="active" id="login-box-link">Login</a>
+            <a href="{% url 'signup' %}" id="signup-box-link">Sign Up</a>
+        </div>
+    <div class="social-login">
+      <a href="#">
+        <i class="fa fa-facebook fa-lg"></i>
+        Login in with facebook
+      </a>
+      <a href="#">
+        <i class="fa fa-google-plus fa-lg"></i>
+        log in with Google
+      </a>
+    </div>
+   <form class="email-login"  action="{% url 'login' %}" method="post" enctype="multipart/form-data">
+       {% csrf_token %}
+       <div class="u-form-group">
+           <div class="col-sm-10">
+           <input  maxlength="30"  name="username" type="text" placeholder="username">
+       </div>
+       </div>
+
+
+       <div class="u-form-group">
+
+        <div class="col-sm-10">
+
+            <input  maxlength="30" placeholder="password" name="password" type="password">
+        </div>
+       </div>
+        <div class="u-form-group">
+            <div class="col-sm-10">
+                <button type="submit" class="btn btn-success">Submit</button>
+            </div>
+        </div>
+
+    </form>
+
+
+  </div>
+
+
+</body>
+</html>

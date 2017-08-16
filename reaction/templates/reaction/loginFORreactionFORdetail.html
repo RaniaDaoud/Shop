@@ -1,0 +1,84 @@
+
+{% load static %}
+ <link rel="stylesheet" type="text/css" href="{% static 'reaction/css/reactionFORdetail.css' %}"/>
+ 
+
+<div>
+<a href="#" data-toggle="modal"  data-target="#myModalLogin1">
+  <div class="thumbnail" style="height: 270px; width: 60px ; border: none;margin-top: 50px;margin-left: 30px">
+      <button data-id="{{ produit.id }}" data-tooltip="tooltip-normal" data-reaction="normal" class="reaction-button normal">
+
+        <span class="tooltip-span tooltip-normal">normal ({{ produit.get_normal }}) </span>
+     
+        <img src="{% static 'reaction/img/reactions/normal.png' %}" alt="" > 
+         
+      </button> 
+
+      <button data-id="{{ produit.id }}" data-tooltip="tooltip-smile" data-reaction="smile" class="reaction-button smile">
+
+        <span class="tooltip-span tooltip-smile">smile ({{ produit.get_smile }}) </span>
+     
+     
+        <img src="{% static 'reaction/img/reactions/smile.png' %}" alt="" >
+      </button> 
+
+      <button data-id="{{ produit.id }}" data-tooltip="tooltip-love" data-reaction="love" class="reaction-button love">
+
+
+        <span class="tooltip-span tooltip-love">love ({{ produit.get_love }}) </span>
+      
+     
+        <img src="{% static 'reaction/img/reactions/love.png' %}" alt="" >
+      </button>  
+
+      <button data-id="{{ produit.id }}" data-tooltip="tooltip-wish" data-reaction="wish" class="reaction-button wish">
+
+
+        <span class="tooltip-span tooltip-wish">wish ({{ produit.get_wish }}) </span>
+      
+     
+        <img src="{% static 'reaction/img/reactions/wish.png' %}" alt="" >
+      </button>  
+
+
+ <div style="margin-left: 5px">
+ <img src="{% static 'reaction/img/reactions/facebook.png' %}" alt="Facebook" >
+ <img src="{% static 'reaction/img/reactions/google.png' %}" alt="Google" >  
+ </div>  
+ </div>   
+ </a>  
+
+<span class="reactions" style=" margin-left: 50px">
+    {% if produit.reaction_set.count > 0 %}
+  <span class="badge">{{ produit.reaction_set.count }}</span>
+  <!--reaction{% if produit.reaction_set.count > 1 %}s{% endif %}  -->
+    {% endif %}
+</span> 
+ 
+
+  </div> 
+
+
+
+
+
+  
+<div id="myModalLogin1" class="modal fade model-lg " role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+<div class="modal-dialog ">
+<div class="modal-content">
+     <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h4 class="modal-title">Login</h4>
+    </div>
+
+ <div class="modal-body">
+    
+      
+    {% include 'authentication/login.html' %}
+
+</div>
+</div>
+</div>  
+
+  
+</div>

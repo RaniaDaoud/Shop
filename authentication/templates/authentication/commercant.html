@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+<form class="form-style-9" action="" id="businessuser_form" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+<ul>
+<li>
+    <input type="text" name="username" id="username" class="field-style field-split align-left" placeholder="Username"  value="{{ request.user }}" />
+    
+
+</li>
+<li>
+    <input type="number" name="telephone" id="telephone" class="field-style field-split align-left" placeholder="Telephone" value="{{ form.telephone.value }}" required />
+    
+</li>
+<li>
+
+<select name="type" id="type" class="field-style field-full align-none" >
+    <option value="ENTERPRISE" {% if form.type.value == 'ENTREPRISE' %}selected{% endif %}>Entreprise</option>
+    <option value="INDIVIDUAL" {% if form.type.value == 'INDIVIDUAL' %}selected{% endif %}>Particulier</option>
+</select>
+</li>
+<li>
+<textarea name="description" id="description" class="field-style" placeholder="Description" required>{{ form.description.value }}</textarea>
+</li>
+<li>
+<input type="submit" value="Next" class="btn btn-default pull-right" id="next"></li>
+</ul>
+</form>
+
+{%endblock%}
+

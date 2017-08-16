@@ -1,0 +1,37 @@
+.comment {
+    display: block;
+    padding: 10px;
+    margin: 0 10px;
+    border-bottom: 1px solid #ddd;
+    font-size: 0.9em;
+    color: #444;
+    line-height: 17px;
+}
+
+.comment:last-child {
+    border-bottom: none;
+}
+
+.comment-count {
+    font-size: 0.8em;
+    font-weight: bold;
+}
+
+#comment-form textarea {
+    border: none;
+    max-height: 120px;
+    border-radius: 0;
+    background-color: transparent;
+    width: 100%;
+}
+
+#comment-form .btn {
+    border-radius: 0;
+    font-weight: bold;
+    padding: 5px 10px;
+}
+
+.comment .time {
+    font-size: 0.8em;
+    color: #888;
+}

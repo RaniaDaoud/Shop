@@ -1,0 +1,49 @@
+<div class="pagination">
+<span class="step-links">
+
+
+
+<head>
+<style>
+nav-aa
+{
+    position: relative;
+    left: 130px;
+    bottom: 100px;
+    
+</style>
+</head>
+
+
+
+
+
+
+<nav-aa aria-label="Page navigation" >
+ {% if page.has_other_pages %}
+   <ul class="pagination">
+
+       {% if page.has_previous %}
+                 <li>   <a href= "/discover/filtrell/?page={{ page.previous_page_number }}&{{filters}}">&laquo;</a></li>
+        {% else %} <li class="disabled"><span>&laquo;</span> </li>
+          {% endif %}
+    {% for pageId in page.paginator.page_range %}
+      {% if page.number == pageId %}
+                <li class="active"><span>{{page.number}}</span></li>
+       {% else %} 
+         <li><a href="/discover/filtrell/?page={{pageId}}&{{filters}}">{{pageId}}</a></li>
+
+         {% endif %}
+    {% endfor %}   
+
+                {% if page.has_next %}
+                  <li>  <a href="/discover/filtrell/?page={{ page.next_page_number }}&{{filters}}">&raquo;</a></li>
+                   {% else %} <li class="disabled"><span>&raquo;</span> </li>
+                {% endif %}
+
+
+
+ {% endif %}
+
+   </ul>	
+</nav-aa>

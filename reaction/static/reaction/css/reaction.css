@@ -1,0 +1,123 @@
+
+
+.reaction-button {
+    
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    display: block;
+    float: right;
+    padding: 0;
+    margin:0;
+
+}
+.reaction-button1 {
+    
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    display: block;
+    float: right;
+    padding: 0;
+    margin:0;
+
+}
+
+img:hover {
+  height: 40px;
+  width: 40px;
+ 
+  overflow:visible;
+  z-index:1000;
+  border:none;  
+  visibility: visible;
+  opacity: 1;
+ 
+} 
+
+
+.tooltip-span {
+    display: none;
+    width: 100px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    
+    /* Position the tooltip */
+   position: absolute;
+    z-index: 1;
+    margin-top:-40px;
+    margin-left: -50px;
+   
+}
+
+  .spanN  {
+    width: 100px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    
+    /* Position the tooltip */
+    
+   
+}
+.spanS  {
+    display: none;
+    width: 100px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    
+    /* Position the tooltip */
+     position: absolute;
+    z-index: 1;
+    margin-top:-40px;
+    margin-left: 200px;
+   
+}
+.spanL  {
+    display: none;
+    width: 100px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    
+    /* Position the tooltip */
+     position: absolute;
+    z-index: 1;
+    margin-top:-40px;
+    margin-left: 200px;
+   
+}
+.spanW  {
+    display: none;
+    width: 100px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    margin-top:-40px;
+    margin-left: 200px;
+   
+}
+
+

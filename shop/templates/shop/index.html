@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% block boutiques_active %}active{% endblock %}
+
+{% block body %}
+<div class="albums-container container-fluid">
+
+    <!-- Albums -->
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>{{ user.username }}'s Boutiques</h3>
+        </div>
+        {% if boutiques %}        
+            {% for boutique in boutiques %}
+                <div class="col-sm-4 col-lg-3">
+                    <div class="thumbnail">
+                        <a href="{% url 'boutique:detail' boutique.id %}">
+                            <img src="{{ boutique.logo.url }}" class="img-responsive">
+                        </a>
+                        <div class="caption">
+                            <h2>{{ boutique.name }}</h2>
+
+
+                            <!-- View Details -->
+                            <a href="{% url 'boutique:detail' boutique.id %}" class="btn btn-primary btn-sm" role="button">View Details</a>
+
+
+                            <!-- Delete Album -->
+
+                         <form action="{% url 'boutique:delete_boutique' boutique.id %}" method="post" style="display: inline;">
+                            {% csrf_token %}
+                            <input type="hidden" name="boutique_id" value="{{ boutique.id }}" />
+                            <button type="submit" class="btn btn-default btn-sm">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                         </form>
+                            <!-- Favorite Album -->
+                        <form action="{% url 'boutique:post_updateB' boutique.id %}" method="get" style="display: inline;">
+                            {% csrf_token %}
+                            <input type="hidden" name="boutique_id" value="{{ boutique.id }}" />
+                            <button type="submit" class="btn btn-default btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>&nbsp; 
+                            </button>
+
+                        </form>
+                        <!--   -->
+                        <form action="{% url 'boutique:post_updateU' boutique.id %}" method="get" style="display: inline;">
+                            {% csrf_token %}
+                            <input type="hidden" name="boutique_id" value="{{ boutique.id }}" />
+                            <button type="submit" class="btn btn-default btn-sm">
+                                <span class="glyphicon glyphicon-user"></span>&nbsp; 
+                            </button>
+
+                        </form>
+
+
+                        </div>
+                    </div>
+                </div>
+                {% cycle '' '' '' '' '' '<div class="clearfix visible-lg"></div>' %}
+            {% endfor %}
+        {% else %}
+            <div class="col-sm-12">
+                <br>
+                <a href="{% url 'utilisateur_register' %}">
+                    <button type="button" class="btn btn-success">
+                        <span class="glyphicon glyphicon-plus"></span>&nbsp; Add an Boutique
+                    </button>
+                </a>
+            </div>
+        {% endif %}    
+    </div>
+
+    <!-- If user searches and there are songs -->
+ <!--    {% if produits %}
+        <div class="row">
+            <div class="col-sm-12">
+                <h3>Produits</h3>
+            </div>
+            <div class="col-sm-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Produit Title</th>
+                                    <th>Description</th>
+                                    
+                                    <th>View Details</th>
+                                   
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for produit in produits %}
+                                    <tr>
+                                        <td>{{ produit.title }}</td>
+                                        <td>{{ produit.boutique.name }}</td>    
+                             <td>{{ produit.descreption }}</td>
+                                        
+                                        <td>
+                                            
+                                            <a href="{% url 'boutique:DetailView1' produit.id %}"><button type="button" class="btn btn-success">
+                        <span class="glyphicon glyphicon-zoom-in"></span>&nbsp; 
+                    </button></a>
+                                        </td>
+                                        
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %} -->
+
+
+</div>
+{% endblock %}

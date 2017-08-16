@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+
+
+<!--           Raniiiiiiiiiiiiiiiiiiiiiiiiiia             -->
+{% block body %}
+<!-- <ul class="nav nav-pills" style="margin-bottom: 10px;">  -->
+<!--
+<form class="navbar-form navbar-right" style="margin-right: 210px;margin-top: 2px ;margin-bottom: 10px" method="get" action="{% url 'discover:filter2' %}?{% for key, value in request.GET.items %}&{{ key }}={{ value }}{% endfor %}">
+               
+  <div class="btn-group1">
+  <button class="button" type="submit" name="creat" value="croissant" > Plus récent  </button>
+  <button class="button" type="submit" name="creat" value="decroissant" > Plus ancien  </button>
+  
+  </div>                                                      
+                    <input type="hidden" name="recherche" value="{{ request.GET.recherche }}"/>
+                    <input type="hidden" name="catego" value="{{ request.GET.catego }}"/>
+                    <input type="hidden" name="type0" value="{{ request.GET.type0 }}"/>
+                    <input type="hidden" name="minprice" value="{{ request.GET.minprice }}"/>
+                    <input type="hidden" name="maxprice" value="{{ request.GET.maxprice }}"/>
+                
+</form> -->
+<div class="container-fluid songs-container">
+
+<div class="row">
+
+   
+
+       <div class="col-sm-4 col-md-3">
+            
+        <div class="panel panel-default" >
+
+            <div class="panel-body" style="padding: 0px;padding-left:10px">
+                          <h3> Toutes les categories </h3>
+
+               
+ <form class="navbar-form navbar-left"  method="get" action="{% url 'searchPost' %}?{% for key, value in request.GET.items %}&{{ key }}={{ value }}{% endfor %}">
+                    <div class="form-group">
+       <div class="btn-group">
+<button class="button" type="submit" name="categorie1" value="" > Tous les posts ({{  Tous  }}) </button>
+{% if Bijoux > 0 %}
+<button class="button" type="submit" name="categorie1" value="Bijoux" > Bijoux ({{  Bijoux  }}) </button>
+{% else %}
+<button class="button" type="button" name="categorie1" value="Bijoux" > Bijoux ({{  Bijoux  }}) </button>
+{% endif %}
+{% if Vetement > 0 %}
+<button class="button" type="submit" name="categorie1" value="Vetement" > Vetement ({{  Vetement  }}) </button>
+{% else %}
+<button class="button" type="button" name="categorie1" value="Vetement" > Vetement ({{  Vetement  }}) </button>
+{% endif %}
+{% if Accessoires > 0 %}
+<button class="button" type="submit" name="categorie1" value="Accessoires" > Accessoires ({{  Accessoires  }}) </button>
+{% else %}
+<button class="button" type="button" name="categorie1" value="Accessoires" > Accessoires ({{  Accessoires  }}) </button>
+{% endif %}
+{% if Art > 0 %}
+<button class="button" type="submit" name="categorie1" value="Art et collections" > Art et collections ({{  Art  }}) </button>
+{% else %}
+<button class="button" type="button" name="categorie1" value="Art et collections" > Art et collections ({{  Art  }}) </button>
+{% endif %}
+{% if Maison > 0 %}
+<button class="button" type="submit" name="categorie1" value="Maison et ameublement" > Maison et ameublement ({{  Maison  }}) </button>
+{% else %}
+<button class="button" type="button" name="categorie1" value="Maison et ameublement" > Maison et ameublement ({{  Maison  }}) </button>
+{% endif %}
+</div>
+
+            <!--    <button type="submit" class="btn btn-default" style="margin-left: 75px">Submit</button>    -->
+                    <input type="hidden" name="recherche1" value="{{ request.GET.recherche1 }}"/>
+                    
+                    
+                </div>
+</form>
+   </div>
+</div> 
+
+
+    </div>
+   
+
+<!-- liste des produits -->
+      <div class="col-sm-8 col-md-9">
+
+            <div class="container-fluid produits-container">
+
+              {% include 'post/liste_posts.html' with posts=posts %} 
+            </div>
+      </div>
+
+                                </div>
+
+
+
+      
+
+                      
+
+                 </div>
+                 </div>
+
+        </div>
+
+
+
+
+
+
+
+                
+
+
+  
+
+
+
+
+{% endblock %}
+
+
+
+</body>
+</html>

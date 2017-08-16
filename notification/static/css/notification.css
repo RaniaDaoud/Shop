@@ -1,0 +1,83 @@
+ul.all-notifications {
+  padding: 0;
+  margin-top: 1em;
+}
+
+ul.all-notifications li {
+  list-style: none;
+  border-bottom: 1px solid #eeeeee;
+  padding: .8em 0;
+}
+
+ul.all-notifications li:last-child {
+  border-bottom: none;
+}
+
+ul.all-notifications li small {
+  color: #cccccc;
+  font-size: .8em;
+}
+
+ul.all-notifications li p {
+  margin: 0;
+}
+
+ul.all-notifications li div {
+  margin-left: 40px;
+  padding-left: 1em;
+}
+
+ul.all-notifications .user-picture {
+  width: 40px;
+  float: left;
+}
+
+
+
+
+.notifications {
+  font-size: 1.5em;
+  padding: 13px;
+  color: #dddddd;
+}
+
+.nav.navbar-nav li .notifications.new-notifications  {
+  color: #FFA07A;
+
+}
+
+.popover {
+  max-width: 350px;
+  width: 350px;
+}
+
+.popover ul {
+  padding: 0;
+  margin: 0;
+}
+
+.popover ul li {
+  list-style: none;
+  border-bottom: 1px solid #eeeeee;
+  padding: .4em 0;
+}
+
+.popover ul li:last-child {
+  border-bottom: none;
+}
+
+.popover ul li .user-picture {
+  width: 45px;
+  float: left;
+}
+
+.popover ul li p {
+  font-size: .9em;
+  padding: 0 0 0 .6em;
+  margin-left: 45px;
+  margin-bottom: 0;
+}
+
+.markdown {
+  margin-bottom: .8em;
+}

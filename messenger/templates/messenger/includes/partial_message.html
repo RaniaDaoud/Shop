@@ -1,0 +1,47 @@
+<li class="message">
+  <img src="{{ message.from_user.profile.get_picture }}" class="picture" style="height: 40px;width: 40px;">
+  <div>
+    <h5>
+      <small class="pull-right" style="margin-left:380px">
+        {{ message.date|date:'N d G:i' }}
+      </small>
+      <a href="{% url 'profile' message.from_user.username %}">
+        {{ message.from_user.profile.get_screen_name }}
+      </a>
+    </h5>
+   {% if message.objet   %}
+   <div style="overflow: auto;">
+  <a href=" http://127.0.0.1:8000/boutique/produit/{{message.produit.id }}" > <img src="{{ message.produit.logo.url }}" style="width:140px;height:140px;float: left;"> </a>
+    
+   <h4><a href=" http://127.0.0.1:8000/boutique/produit/{{message.produit.id }}" style="margin-left: 20px"> {{ message.objet}} </a> </h4>
+   </div>
+   
+  
+  <!--  <h5>{{ message.message }} </h5> -->
+   
+    {% endif %} 
+  
+
+   
+
+   
+
+     
+  {% if message.message and not message.attachement  %}
+  
+    {{ message.message }}
+ 
+  {% endif %}
+
+{% if message.attachement %}
+     <div style="overflow: auto;">
+        <img class="img-responsive-thumbnail" style="float: right;height: 140px;width:140px" src="{{ message.attachement.attachement.url }}" >
+      
+      </div>
+         
+   {% endif %}
+   
+    
+    
+  </div>
+</li>

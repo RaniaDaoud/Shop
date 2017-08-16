@@ -1,0 +1,25 @@
+<style type="text/css">
+.glyphicon.glyphicon-camera {
+    font-size: 25px;
+}
+
+</style>
+<form role="form" method="post" action="{% url 'send_IMG' %}" id="sendIMG" enctype="multipart/form-data" style="float: left; ">
+      {% csrf_token %}
+      <input type="hidden" name="to" id="to" value="{{ active }}">
+     <div >
+      <span id="idDivI">Attachez image</span>
+         <button type="button" class="w3-button w3-large w3-circle w3-large w3-ripple w3-pink" >
+         <label for="attach" class="glyphicon glyphicon-paperclip" onmouseover="AfficheI()" onmouseout="CacheI()">
+          <input type="file" class="attach" id="attach" name="attachement" style="display: none;" >
+         
+        </label> 
+       </button>
+      </div>
+
+       {% load static %}         
+      <script src="{% static 'js/show.title.js' %}"></script>
+
+     
+</form>
+    

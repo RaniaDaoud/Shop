@@ -1,0 +1,56 @@
+{% for produit in produitS %}
+
+  {% if produit.is_favorite == True %}
+<div class="col-md-4">
+
+    <div class="thumbnail product-small" data-product-id="{{ produit.id }}" data-boutique-id="{{ produit.boutique.id }}" >
+
+       <form role="form" method="post" action="{% url 'send_messageMes' %}" class="sendMes">
+          {% csrf_token %}
+          <input type="hidden" name="to" id="to" value="{{ active }}">
+          <input type="hidden" name="objet" id="objet" value="{{ produit.title }}">
+          <input type="hidden" name="url" id="url" value="{{ produit.id }}">
+          <button type="Submit" >  <img src="{{ produit.logo.url }}"  style="width:200px;height:160px;" class="img-responsive"></button> 
+          
+           <div class="success_message" class="ajax_response" style="float:left"></div>
+ 
+       </form>
+      <div class="row" style="margin:5px">
+         <div class="col-md-12 col-md-offset-0">
+           {{ produit.title }} 
+        <span class="btn btn-primary btn-xs" style="float: right;"> {{produit.prix }} Dt</span> <br>
+       
+       
+       </div>
+        
+      </div>
+
+       <form action="{% url 'boutique:DetailView1' produit.id %}" method="get" style="display: inline;">
+        {% csrf_token %}
+        <input type="hidden" name="produit_id" value="{{ produit.id }}" />
+        <button type="submit" class="btn btn-danger btn-xs">
+            <span class="glyphicon glyphicon-zoom-in"></span>&nbsp; View Detail /{{produit.boutique.user}}
+        </button>
+         <input type="hidden" name="username" value="{{ produit.boutique.user }}"/>
+        
+         <input type="hidden" name="objet" value="{{ produit.title}}"/>
+        <input type="hidden" name="url" value="{{ produit.url}}"/>
+        </form>  
+ <a href="#{{ produit.id }}" role="button" class="btn"  data-toggle="modal">Popup images</a>
+      
+       
+    </div>
+
+</div>
+
+
+
+
+  {% endif %}
+    {% empty %} Il n'y a pas de produits
+{% endfor %}
+
+{% load static %}
+<script src="{% static 'js/second.Popup.js' %}"></script>
+
+<script src="{% static 'js/attach_product/messages.produits.js' %}"></script>

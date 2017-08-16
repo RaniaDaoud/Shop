@@ -1,0 +1,263 @@
+{% extends 'base.html' %}
+
+
+<!--           Raniiiiiiiiiiiiiiiiiiiiiiiiiia             -->
+{% block body %}
+<!-- <ul class="nav nav-pills" style="margin-bottom: 10px;">  -->
+
+
+<div class="container-fluid songs-container">
+
+<div class="row">
+
+ <div class="col-sm-4 col-md-3">
+
+<!--
+  <button class="btnM" type="submit" name="creat" value="croissant" ><i class="fa fa-home"></i> Post and Products  </button>
+    <button class="btnM" type="submit" name="creat" value="croissant" ><i class="fa fa-home"></i> Posts  </button> 
+    <button class="btnM " type="submit" name="creat" value="croissant" ><i class="fa fa-home"></i> Products ({{  Tous  }}) </button>   
+ 
+  -->
+
+
+
+<ul class="accordion-menu" style="padding: 0px">
+<li>
+   <div class="dropdown"> 
+    <button class="btnF" style="background-color: transparent; border: none;" type="submit" name="creat" value="croissant" ><i class="fa fa-home" aria-hidden="true"></i> Posts and Products  </button>      
+    </div> 
+    </li>
+    <div class="dropdown"> 
+    <button class="btnF" style="background-color: transparent; border: none;" type="submit" name="creat" value="croissant" ><i class="fa fa-home" aria-hidden="true"></i> Post  </button>      
+    </div> 
+    <div class="dropdown"> 
+    <button class="btnF" style="background-color: transparent; border: none;" type="submit" name="creat" value="croissant" ><i class="fa fa-home" aria-hidden="true"></i> Products  </button>      
+    </div> 
+  <li>
+    
+
+    <div class="dropdownlink"><i class="fa fa-road" aria-hidden="true"></i> Pertinence par
+      <i class="fa fa-chevron-down" aria-hidden="true"></i>
+    </div>
+    <ul class="submenuItems">
+     <form class="navbar-form navbar-left"  method="get" action="{% url 'discover:filter2' %}?{% for key, value in request.GET.items %}&{{ key }}={{ value }}{% endfor %}">
+               
+  <div class="btn-group">
+  <button class="btnC" type="submit" name="creat" value="croissant" > Plus récent  </button>
+  <button class="btnC" type="submit" name="creat" value="decroissant" > Plus ancien  </button>
+  <button class="btnC" type="submit" name="creat" value="croissant1" > Prix croissant  </button>
+  <button class="btnC" type="submit" name="creat" value="decroissant2" > Prix decroissant </button> 
+  </div>                                                      
+                    <input type="hidden" name="recherche" value="{{ request.GET.recherche }}"/>
+                    <input type="hidden" name="catego" value="{{ request.GET.catego }}"/>
+                    <input type="hidden" name="type0" value="{{ request.GET.type0 }}"/>
+                    <input type="hidden" name="minprice" value="{{ request.GET.minprice }}"/>
+                    <input type="hidden" name="maxprice" value="{{ request.GET.maxprice }}"/>
+                
+</form>
+      <li><a href=""></a></li>
+    </ul>
+  </li>
+  <li>
+  <div class="dropdownlink"><i class="fa fa-paper-plane" aria-hidden="true"></i> Filter by category
+      <i class="fa fa-chevron-down" aria-hidden="true"></i>
+    </div>
+    <ul class="submenuItems" style="padding: 0px">
+    
+        
+                          
+ <form class="navbar-form navbar-left"   method="get" action="{% url 'discover:filter2' %}?{% for key, value in request.GET.items %}&{{ key }}={{ value }}{% endfor %}">
+               <div class="form-group">     
+       <div class="btn-group">
+  <button class="btnC " type="submit" name="catego" value="Tous les produits" > Tous les produits ({{  Tous  }}) </button> 
+{% if Bijoux > 0 %}
+<button class="btnC " type="submit" name="catego" value="Bijoux" > Bijoux ({{  Bijoux  }}) </button>
+{% else %}
+<button class="btnC " type="button" name="catego" value="Bijoux" > Bijoux ({{  Bijoux  }}) </button>
+{% endif %}
+{% if Vetement > 0 %}
+<button class="btnC " type="submit" name="catego" value="Vetement" > Vetement ({{  Vetement  }}) </button>
+{% else %}
+<button class="btnC " type="button" name="catego" value="Vetement" > Vetement ({{  Vetement  }}) </button>
+{% endif %}
+{% if Accessoires > 0 %}
+<button class="btnC" type="submit" name="catego" value="Accessoires" > Accessoires ({{  Accessoires  }}) </button>
+{% else %}
+<button class="btnC" type="button" name="catego" value="Accessoires" > Accessoires ({{  Accessoires  }}) </button>
+{% endif %}
+{% if Art > 0 %}
+<button class="btnC" type="submit" name="catego" value="Art et collections" > Art et collections ({{  Art  }}) </button>
+{% else %}
+<button class="btnC" type="button" name="catego" value="Art et collections" > Art et collections ({{  Art  }}) </button>
+{% endif %}
+{% if Maison > 0 %}
+<button class="btnCC" type="submit" name="catego" value="Maison et ameublement" > Maison et ameublement ({{  Maison  }}) </button>
+{% else %}
+<button class="btnC" type="button" name="catego" value="Maison et ameublement" > Maison et ameublement ({{  Maison  }}) </button>
+{% endif %}
+</div>  
+</div>
+
+            <!--    <button type="submit" class="btn btn-default" style="margin-left: 75px">Submit</button>    -->
+                    <input type="hidden" name="recherche" value="{{ request.GET.recherche }}"/>
+                    <input type="hidden" name="creat" value="{{ request.GET.creat }}"/>
+                     <input type="hidden" name="type0" value="{{ request.GET.type0 }}"/>
+                     <input type="hidden" name="minprice" value="{{ request.GET.minprice }}"/>
+                    <input type="hidden" name="maxprice" value="{{ request.GET.maxprice }}"/>
+              
+</form>
+        
+      <li><a href="#"></a></li>
+      
+    </ul>
+  </li>
+
+ <!--  Type  -->
+  <li>
+    <div class="dropdownlink"><i class="fa fa-motorcycle" aria-hidden="true"></i> Filter by type
+      <i class="fa fa-chevron-down" aria-hidden="true"></i>
+    </div>
+    <ul class="submenuItems">
+  
+      <form class="navbar-form navbar-left"  method="get" action="{% url 'discover:filter2' %}?{% for key, value in request.GET.items %}&{{ key }}={{ value }}{% endfor %}">
+                <div class="form-group">
+      <div class="btn-group">
+
+{% if Faits > 0 %}      
+<button class="btnC" type="submit" name="type0" value="Faits à main">  Faits à main ({{  Faits  }})  </button> 
+{% else %}
+<button class="btnC" type="button" name="type0" value="Faits à main">  Faits à main ({{  Faits  }})  </button>
+{% endif %}
+{% if Vintage > 0 %}
+<button class="btnC" type="submit" name="type0" value="Vintage" > Vintage ({{  Vintage  }})   </button>  
+{% else %}
+<button class="btnC" type="button" name="type0" value="Vintage" > Vintage ({{  Vintage  }})   </button>
+{% endif %}
+
+      </div>
+                               
+                               
+                    <input type="hidden" name="recherche" value="{{ request.GET.recherche }}"/>
+                    <input type="hidden" name="catego" value="{{ request.GET.catego }}"/>
+                    <input type="hidden" name="minprice" value="{{ request.GET.minprice }}"/>
+                    <input type="hidden" name="maxprice" value="{{ request.GET.maxprice }}"/>
+                </div>
+</form>
+
+       <li><a href="#"></a></li>
+    </ul>
+  </li>
+
+ <!--     Prix     -->
+  <li>
+    <div class="dropdownlink"><i class="fa fa-quote-left" aria-hidden="true"></i> Filter by price
+      <i class="fa fa-chevron-down" aria-hidden="true"></i>
+    </div>
+    <ul class="submenuItems" style="padding: 20px">
+     <form  method="get" action="{% url 'discover:filter2' %}">
+                <div class="form-group">
+<div class="slider slider-horizontal" style="width: 200px; margin-left: 10px" > 
+<input id="ex2" type="text" name="rangeInput" style="width: 250px;height: 50px; " class="span2" style="margin-bottom: 50px;" value="" data-slider-min="{{minx}}" data-slider-max="{{maxx}}" data-slider-step="" data-slider-id="RC"  ></div></br>
+
+            <input type="number" name="minprice" id="min-price" value="{{minx}}" style="width: 100px;margin-left: 30px;  text-align: center;">
+            <input type="number" name="maxprice" id="max-price" value="{{maxx}}" style="width: 100px;margin-bottom: 10px;  text-align: center;">
+
+                    <input type="submit" class="btn btn-default" data-inline="true" value="submit" style="margin-left: 100px">
+                    <input type="hidden" name="recherche" value="{{ request.GET.recherche }}"/>
+                    <input type="hidden" name="catego" value="{{ request.GET.catego }}"/>
+                    <input type="hidden" name="type0" value="{{ request.GET.type0 }}"/>
+                    <input type="hidden" name="creat" value="{{ request.GET.creat }}"/>
+    </div></form>    
+
+
+   <script type="text/javascript">
+     
+      //initialiser le slider
+       $("#ex2").slider({
+       min :{{minx}},
+       max : {{maxx}},
+       value:[{{minx}},{{maxx}} ]
+       });
+   </script>  
+      
+    </ul>
+  </li>
+
+  
+</ul>
+
+
+
+
+
+
+      
+  
+
+
+
+</div>
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+<!-- liste des produits -->
+      <div class="col-sm-8 col-md-9">
+
+            <div class="container-fluid produits-container">
+
+              {% include 'discover/liste_produits.html' with produits=produits %} 
+            </div>
+      </div>
+
+                                </div>
+
+
+
+      
+
+                      
+
+                 </div>
+                 </div>
+
+        </div>
+</div>
+
+
+
+
+
+
+                
+
+
+  
+
+
+
+
+{% endblock %}
+{% include "produit/pagination.html" with page=produits filters=filters %}
+
+
+</body>
+</html>

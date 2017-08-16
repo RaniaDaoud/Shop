@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+ {% load i18n %}
+{% load humanize %}
+
+{% load static %}
+
+
+
+{% block body %}
+
+<div class="col-md-6 col-md-offset-3">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="user">
+                {% if post.user == request.user %}
+                <img src="{{ post.user.profile.get_picture }}" style="width: 70px;height: 70px" alt="{{ post.user.username }}" class="img-responsive-small img-profile">
+                {% else %}
+                <a href="{% url 'profile' post.user.username %}">
+                    <img src="{{ post.user.profile.get_picture }}" style="width: 70px;height: 70px" alt="{{ post.user.username }}" class="img-responsive-small">
+                </a>
+                {% endif %}
+                
+                    <span class="username">{{ post.user.username }} | <em>{{ post.categorie.name }}</em></span>
+                    <span class="time">{{ post.date | timesince }} ago</span>
+                
+            </div>
+            <div class="content">
+                {% if post.image %}
+    <img src="/image/{{ post.image }}" style="width:250px;height: 250px;margin-left: 200px;"> <br>
+    {% else %}
+    <img src="/image/{{ post.categorie.logo }}" class="user" style="width:250px;height: 250px;margin-left: 200px"><br>
+    {% endif %} <br>
+    {{ post.post }}
+            </div>
+            <hr>
+            
+
+           {% include 'reaction/reactionPost.html' %}
+            <span class="pull-left comment-count">{% if post.comments.count > 0 %}{{ post.comments.count }} comment{{ post.comments.count | pluralize }}{% endif %}</span>
+            
+            </div>
+            <div class="panel-footer">
+                {% include 'post/form_comment.html' with post=post %}
+                <div class="comments">
+                {% for comment in post.comments.all %}
+                    {% include 'post/comment.html' with comment=comment %}
+                {% endfor %}
+                </div>
+    </div>
+</div>
+</div>
+
+{% load static %}
+  <script src="{% static 'reaction/js/reactionPost.js' %}"></script>        
+  <script src="{% static 'reaction/js/reaction.style.js' %}"></script>  
+{% endblock  %}

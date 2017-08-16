@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+{% block title %}{{ Boutique }}{% endblock %}
+{% block boutiques_active %}active{% endblock %}
+
+{% block body %}
+
+<div class="container-fluid songs-container">
+
+    <div class="row">
+
+        <!-- Left Album Info -->
+        <div class="col-sm-4 col-md-3">
+            <div class="panel panel-default" style="height: 500px">
+                <div class="panel-body">
+  
+     
+           <div class="tooltipD"> <h1> {{ boutique.user }} </h1> 
+         <span class="tooltiptextD">{{commercant.type}} </span>
+            </div>
+                       
+                
+                  
+                 <h3>  Phone : {{ commercant.telephone }} </h3>
+        
+                    
+                    <img src="{{ boutique.logo.url }}" class="img-responsive" style="width:270px;height:200px">
+                      <h3> {{ boutique.name }} </h3> 
+                       créee le {{ boutique.date }} 
+
+                       
+                     <h4>   Description : {{commercant.description}} </h4>
+                   
+                              
+
+                   
+
+                    
+                  
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Song Info -->
+        <div class="col-sm-8 col-md-9">
+
+            <ul class="nav nav-pills" style="margin-bottom: 10px;">
+             <li role="presentation"><a href="{% url 'boutique:create_produit' boutique.id %}">Add New Produits</a></li>
+                 </ul>
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                    <h3>All Products</h3>
+
+                    {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>product name</th>
+                            
+                            <th>Status</th>
+                            <th>Actions</th>
+                            <th>Date de creation</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+{% for produit in boutique.produit_set.all %}
+<tr>
+    <td>{{ produit.title }} </td>
+
+                                 
+    
+
+                        <!--<input type="checkbox" checked data-toggle="toggle" data-on="Ready" data-off="Not Ready" data-onstyle="success" data-offstyle="danger"> -->
+   <td>
+    <a href="{% url 'boutique:favorite' produit.id %}" class="btn-favorite"><span class="glyphicon glyphicon-ok {% if produit.is_favorite %}active{% endif %}"></span></a>
+  </td>                     
+
+             
+ 
+<td>
+
+<form action="{% url 'boutique:DetailView1' produit.id %}" method="get" style="display: inline;">
+        {% csrf_token %}
+        <input type="hidden" name="produit_id" value="{{ produit.id }}" />
+        <button type="submit" style="border-radius: 12px; background-color:#FFDAB9;" class="btn btn-default btn-xs">
+            <span class="glyphicon glyphicon-zoom-in"></span>&nbsp; View Detail 
+        </button>
+         <input type="hidden" name="username" value="{{ boutique.user }}"/>
+         
+
+</form>
+
+
+
+    <form action="{% url 'boutique:delete_produit' boutique.id produit.id %}" method="post" style="display: inline;">
+        {% csrf_token %}
+        <input type="hidden" name="produit_id" value="{{ produit.id }}" />
+        <button type="submit" style="border-radius: 12px;background-color:#FFDEAD;" class="btn btn-default btn-xs" onclick="return confirm('etes vous sur de supprimer ???? ')">
+            <span class="glyphicon glyphicon-remove"></span>&nbsp; Delete
+        </button>
+
+    </form>
+
+    <form action="{% url 'boutique:post_update' produit.id %}" method="get" style="display: inline;">
+        {% csrf_token %}
+        <input type="hidden" name="produit_id" value="{{ produit.id }}" />
+        <button type="submit" style="border-radius: 12px;background-color: #f5f5c6" class="btn btn-default btn-xs">
+            <span class="glyphicon glyphicon-pencil"></span>&nbsp; Modify
+        </button>
+
+    </form>
+
+    <form action="{% url 'boutique:dupliquer'  produit.id %}" method="post" style="display: inline;">
+        {% csrf_token %}
+        <input type="hidden" name="produit_id" value="{{ produit.id }}" />
+        <button type="submit" style="border-radius: 12px; background-color: #FFFFE1" class="btn btn-default btn-xs">
+            <span class="glyphicon glyphicon-plus"></span>&nbsp; Duplicate
+        </button>
+
+    </form>
+
+</td>
+    <td>{{ produit.created }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

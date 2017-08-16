@@ -1,0 +1,84 @@
+{% load i18n %}
+{% load humanize %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'discover/css/tooltip.user.css' %}"/> 
+<div class="row">               
+    {% for produit in produits %}
+         {% if produit.is_favorite == True %}
+
+
+      <div class="col-md-3" style="padding-right: 0px">
+
+    
+       <div class="thumbnail"  >
+      
+    <div style="float: right;">   {{ produit.created|naturaltime }} </div>
+
+
+<form action="{% url 'discover:DetailView1' produit.id %}" method="get" style="display: inline;">
+ 
+  <input type="hidden" name="produit_id" value="{{ produit.id }}" >
+  <button type="submit" style="background: none">
+     <img src="{{ produit.logo.url }}"  style="width:220px;height:150px;" class="img-responsive">
+      <h5>  {{ produit.title }}  </h5>
+  </button>
+   <input type="hidden" name="username" value="{{ produit.boutique.user }}"/>
+   <input type="hidden" name="objet" value="{{ produit.title }}"/>
+   <input type="hidden" name="url" value="{{ produit.id }}" />
+   
+
+</form>
+
+
+
+         
+  <div class="caption">
+  <span class="btn btn-danger btn-xs" style="float: right;">{{produit.prix }} Dt</span>
+
+ 
+
+
+
+
+       
+
+            
+  
+    <div class="tooltip1">Par {{ produit.boutique.user }}
+  <a href="{% url 'discover:boutique' produit.id %}">  <span class="tooltiptext">From {{ produit.boutique.name }}</span> </a>
+   </div>
+
+  <!--  <span class="price price-green">{{produit.prix }} Dt</span>-->
+    
+     
+
+      
+
+               </div>
+  {% if user.is_authenticated %}           
+           {% include 'reaction/reaction.html' %}
+  {% else %}  
+
+      {% include 'reaction/loginFORreaction.html' %}
+
+
+  {% endif %}      
+          </div>
+ 
+          </div>
+
+
+                 {% endif %}
+
+          {% endfor %}
+          </div>
+
+
+<script type="text/javascript">
+ 
+</script>
+
+{% load static %}
+  <script src="{% static 'reaction/js/reaction.js' %}"></script>        
+  <script src="{% static 'reaction/js/reaction.style.js' %}"></script>  
+

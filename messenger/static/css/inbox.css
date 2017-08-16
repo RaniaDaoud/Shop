@@ -1,0 +1,74 @@
+/* Box styles */
+.myBox {
+border: none;
+padding: 5px;
+font: 24px/36px sans-serif;
+height: 400px;
+width: 600px;
+overflow-y: scroll;
+}
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+width: 12px;
+height: 30px;
+}
+
+::-webkit-scrollbar-track {
+border-radius: 10px;
+width: 2px;
+border: 1px dotted pink;
+}
+
+::-webkit-scrollbar-thumb {
+background: pink; 
+border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+background: hotpink;  
+}
+.picture{
+  display: inline;
+}
+
+
+   
+.prix {
+    background-color: #3366ff;
+    color: #ffffff;
+}
+ .prix {
+    border-radius: 100%;
+    cursor: default;
+    display: block;
+    float: left;
+    height: 45px;
+    line-height: 45px;
+    
+    text-align: center;
+    width: 45px;
+}
+
+.modal-body {
+  max-height:600px;
+  overflow:auto;
+}
+div.modal.fade.bd-example-modal-sm  {
+  margin-left:1000px;
+}
+.FileName{
+    
+    overflow: hidden;
+}
+
+
+.prix:after {
+    content: 'Dt';
+    font-size: somethingSmaller;
+}
+
+.glyphicon .glyphicon-plus{
+  height: 45px;
+  width:45px;
+}

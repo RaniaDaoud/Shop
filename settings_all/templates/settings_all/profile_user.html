@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load i18n %}
+{% load humanize %}
+
+{% block title %}{{ page_user.profile.get_screen_name }}{% endblock %}
+
+{% block head %}
+  <link href="{% static 'css/profile.css' %}" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{% static 'produit/style.css' %}"/>
+  <script src="{% static 'js/jquery.bullseye-1.0-min.js' %}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js" type="text/javascript"></script>
+{% endblock head %}
+{% block extrahead %}
+
+{% endblock extrahead %}
+{% block body %}
+  <div class="page-header">
+    <h1> Welcome to your profile {{ page_user.profile.get_screen_name }} {% if page_user.get_full_name %}<small>({{ page_user.username }})</small>{% endif %}</h1>
+  </div>
+  <div class="col-md-8 col-md-offset-2">
+  <div class="profile">
+  <div class="col-md-4 user-profile">
+      <div class="thumbnail">
+        <img src="{{ page_user.profile.get_picture }}" class="picture" style="border: inset;">
+           <p style="padding-left: 100px"> {{ page_user.profile.get_screen_name }} </p>
+        <ul>
+          {% if page_user.profile.job_title %}
+          <li><span class="glyphicon glyphicon-briefcase"></span> {{ page_user.profile.job_title }}</li>
+          {% endif %}
+          {% if page_user.profile.location %}
+          <li><span class="glyphicon glyphicon-map-marker"></span> {{ page_user.profile.location }}</li>
+          {% endif %}
+          {% if page_user.profile.url %}
+          <li><span class="glyphicon glyphicon-globe"></span> <a href="{{ page_user.profile.get_url }}" target="_blank">{{ page_user.profile.get_url }}</a></li>
+          {% endif %}
+        </ul>
+        </div>
+      </div>
+      </div>
+    <div class="col-md-8"> 
+
+       {% for post in posts  %}
+        <div class="thumbnail"  >
+      
+          <div style="float: right;">   {{ post.date|naturaltime }} </div>
+          <div class="caption">
+           {% if post.image %}
+    <img src="/image/{{ post.image }}" style="width:150px;height: 150px;padding: 10px;margin-left: 180px;border: outset;"> <br>
+    {% else %}
+    <img src="/image/{{ post.categorie.logo }}" class="user" style="width:150px;height: 150px;margin-left: 180px;padding: 10px;border: outset;"><br>
+    {% endif %}
+        <a  href="{% url 'DetailPost' post.id %}" class="pull-left">Comments {% if post.comments.count > 0 %}({{ post.comments.count }}){% endif %}</a>
+     
+    {% include 'reaction/reactionPost.html' %}
+         <p> {{ post.post }} </p>
+          </div>
+        </div>  
+       {% endfor %}
+
+    </div>
+</div>      
+{% load static %}
+  <script src="{% static 'reaction/js/reactionPost.js' %}"></script>        
+  <script src="{% static 'reaction/js/reaction.style.js' %}"></script>  
+  
+{% endblock body %}

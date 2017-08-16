@@ -1,0 +1,37 @@
+{% load static %}
+ <link rel="stylesheet" type="text/css" href="{% static 'reaction/css/reaction.css' %}"/>
+
+  <script src="{% static 'reaction/js/reaction.style.js' %}"></script>
+
+<div style="margin-bottom: 20px; ">
+<div >
+
+     
+
+      <button data-id="{{ post.id }}" data-tooltip="tooltip-dislike" data-reaction="dislike" class="reaction-button1 dislike" style="padding-left: 10px;">
+
+        <span class="tooltip-span tooltip-dislike">dislike ({{ post.get_dislike }}) </span>
+     
+        <span class="glyphicon glyphicon-thumbs-down"></span>
+      </button>
+
+       <button data-id="{{ post.id }}" data-tooltip="tooltip-like" data-reaction="like" class="reaction-button1 like" style="padding-left: 10px;">
+
+        <span class="tooltip-span tooltip-like">like ({{ post.get_like }}) </span>
+
+        <span class="glyphicon glyphicon-thumbs-up"></span> 
+         
+      </button>
+</div>
+
+    
+
+<span class="reactions1" style="float: right; margin-right: 5px">
+    {% if post.get_reaction > 0 %}
+  <span class="badge"> {{ post.get_reaction }} </span>
+  <!--reaction{% if produit.reaction_set.count > 1 %}s{% endif %}  -->
+    {% endif %}
+</span> 
+ 
+ 
+  </div> 

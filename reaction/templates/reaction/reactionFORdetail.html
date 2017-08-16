@@ -1,0 +1,67 @@
+
+{% load static %}
+ <link rel="stylesheet" type="text/css" href="{% static 'reaction/css/reactionFORdetail.css' %}"/>
+{% if user.is_authenticated %} 
+
+<div>
+  <div class="thumbnail" style="height: 270px; width: 60px ; border: none;margin-top: 50px;margin-left: 30px">
+      <button data-id="{{ produit.id }}" data-tooltip="tooltip-normal" data-reaction="normal" class="reaction-button normal">
+
+        <span class="tooltip-span tooltip-normal">normal ({{ produit.get_normal }}) </span>
+     
+        <img src="{% static 'reaction/img/reactions/normal.png' %}" alt="" > 
+         
+      </button> 
+
+      <button data-id="{{ produit.id }}" data-tooltip="tooltip-smile" data-reaction="smile" class="reaction-button smile">
+
+        <span class="tooltip-span tooltip-smile">smile ({{ produit.get_smile }}) </span>
+     
+     
+        <img src="{% static 'reaction/img/reactions/smile.png' %}" alt="" >
+      </button> 
+
+      <button data-id="{{ produit.id }}" data-tooltip="tooltip-love" data-reaction="love" class="reaction-button love">
+
+
+        <span class="tooltip-span tooltip-love">love ({{ produit.get_love }}) </span>
+      
+     
+        <img src="{% static 'reaction/img/reactions/love.png' %}" alt="" >
+      </button>  
+
+      <button data-id="{{ produit.id }}" data-tooltip="tooltip-wish" data-reaction="wish" class="reaction-button wish">
+
+
+        <span class="tooltip-span tooltip-wish">wish ({{ produit.get_wish }}) </span>
+      
+     
+        <img src="{% static 'reaction/img/reactions/wish.png' %}" alt="" >
+      </button>  
+
+
+ <div style="margin-left: 5px">
+<a href="https://www.facebook.com/sharer/sharer.php?u=http://127.0.0.1:8000/discover/produitDetail/{{ produit.id }}/" class="reaction-button facebook" onclick="window.open(this.href, 'facebookwindow','left=20,top=20,width=600,height=700,toolbar=0,resizable=1'); return false;"><img src="{% static 'reaction/img/reactions/facebook.png' %}" alt="Facebook" ></a> 
+<a href='https://plus.google.com/share?url=http://127.0.0.1:8000/discover/produitDetail/{{ produit.id }}/' class="reaction-button google" onclick="window.open(this.href, 'facebookwindow','left=20,top=20,width=600,height=700,toolbar=0,resizable=1'); return false;"> <img src="{% static 'reaction/img/reactions/google.png' %}" alt="Google" > </a> 
+ </div>  
+ </div>     
+
+<span class="reactions" style=" margin-left: 50px">
+    {% if produit.reaction_set.count > 0 %}
+  <span class="badge">{{ produit.reaction_set.count }}</span>
+  <!--reaction{% if produit.reaction_set.count > 1 %}s{% endif %}  -->
+    {% endif %}
+</span> 
+ 
+
+  </div> 
+
+
+{% load static %}
+ <script src="{% static 'reaction/js/reactionFORdetail.js' %}"></script> 
+
+
+ {% else %}
+ {% include 'reaction/loginFORreactionFORdetail.html' %}
+
+ {% endif %}

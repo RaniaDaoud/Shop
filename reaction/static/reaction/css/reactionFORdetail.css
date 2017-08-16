@@ -1,0 +1,47 @@
+  
+.reaction-button {
+    
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    display: inline-block;
+    
+
+}
+img {
+   width:40px ;
+    height:40px;
+}
+
+img:hover {
+  height: 45px;
+  width: 45px;
+ 
+  overflow:visible;
+  z-index:2;
+  border:none;  
+  visibility: visible;
+  opacity: 1;
+ 
+} 
+
+.tooltip-span {
+    display: none;
+    width: 100px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    
+    /* Position the tooltip */
+   position: absolute;
+    z-index: 1;
+    margin-top:-40px;
+    margin-left: -50px;
+   
+}
+

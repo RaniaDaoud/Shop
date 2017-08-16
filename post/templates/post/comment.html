@@ -1,0 +1,11 @@
+<div class="row comment">
+    <div class="col-md-2">
+        <img src="{{ comment.user.profile.get_picture }}" style="width: 70px;height: 70px" alt="{{ comment.user.username }}" class="img-responsive-small img-profile">
+    </div>
+    <div class="col-md-10">
+    <span class="user">{{ comment.user }}</span>
+    <span class="time">{{ comment.date | timesince }}</span>
+        <p class="text" style="padding: 10px">{{ comment.text }}</p>
+        
+    </div>
+</div>

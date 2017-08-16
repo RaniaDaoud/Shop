@@ -1,0 +1,128 @@
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+h2 {
+  text-align: center;
+  margin: 20px auto;
+  color: #fff;
+}
+
+.accordion-menu {
+  width: 100%;
+  padding-top: 5px;
+  
+  max-width: 350px;
+  margin: 30px auto 40px;
+  background: transparent;
+  border-radius: 4px;
+}
+.accordion-menu li.open .dropdownlink {
+  color: #c51024;
+  /*padding: 10px;  */
+  .fa-chevron-down {
+    transform: rotate(180deg);
+  }
+}
+.accordion-menu li:last-child .dropdownlink {
+  border-bottom: 0;
+}
+.dropdownlink {
+  cursor: pointer;
+  display: block;
+  padding: 15px 15px 15px 15px;
+  font-size: 18px;
+  border-bottom: 1px solid #ccc;
+  color: grey;
+  position: relative;
+  transition: all 0.4s ease-out;
+  i {
+    position: absolute;
+    top: 17px;
+    left: 16px;
+  }
+  .fa-chevron-down {
+    right: 12px;
+    left: auto;
+  }
+}
+
+.submenuItems {
+  display: none;
+  position: relative;
+  padding-bottom:5px;
+  position: center;
+
+  background-color: transparent;
+  
+    
+  
+}
+
+.submenuItems a {
+ 
+  color: #727272;
+  padding: 0px 50px 50px 45px;
+  transition: all 0.4s ease-out;
+  &:hover {
+    background-color: #CDDC39;
+    color: #fff;
+  }
+}
+
+.btnF {
+
+    cursor: pointer;
+  display: block;
+  padding: 15px 15px 15px 15px;
+  font-size: 18px;
+  border-bottom: 1px solid #ccc;
+  color: grey;
+  position: relative;
+
+  transition: all 0.4s ease-out;
+  i {
+    position: absolute;
+    top: 17px;
+    left: 16px;
+  }
+  .fa-chevron-down {
+    right: 12px;
+    left: auto;
+  }
+
+
+} 
+/*
+ .btnM:not(:last-child) {
+    border-bottom: none; /* Prevent double borders */
+}  
+/*
+ .btnM:hover {
+    background-color: #B22222;
+}  */
+
+
+.dropdown {
+  cursor: pointer;
+  display: block;
+  padding: 15px 15px 15px 15px;
+  font-size: 18px;
+  border-bottom: 1px solid #ccc;
+  color: grey;
+  position: relative;
+  transition: all 0.4s ease-out;
+  i {
+    position: absolute;
+    top: 17px;
+    left: 16px;
+  }
+  .fa-chevron-down {
+    right: 12px;
+    left: auto;
+  }
+}

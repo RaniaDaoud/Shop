@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+
+<img src="{{ user.profile.get_picture }}" class="picture" style="height: 100px;width: 100px;" >
+
+<div class="row">
+<div class="col-md-6 col-md-offset-3">
+<div id="flip" ">Post</div> 
+                
+       
+       <form class="form-style-9" action="{% url 'post' %}" id="post" method="post" enctype="multipart/form-data" style="display: none">
+        
+          {% csrf_token %}
+
+         
+
+         {% for value, text in form.categorie.field.choices %}
+        
+             <div class="col-md-4" style="padding:10px">
+                <img src="{{text}}" class="img-responsive btn-radio img-radio" style="width: 120px;height: 120px;border: double;">
+                
+                <input type="radio" name="categorie" id="{{value}}" class="hidden" value="{{value}}">
+              </div> 
+
+     
+          {% endfor %}  
+         
+     <script type="text/javascript">
+       $(function () {
+    $('.btn-radio').click(function(e) {
+        $('.btn-radio').not(this).removeClass('active')
+        .siblings('input').prop('checked',false)
+            .siblings('.img-radio').css('opacity','0.5');
+      $(this).addClass('active')
+            .siblings('input').prop('checked',true)
+        .siblings('.img-radio').css('opacity','1');
+    });
+});
+     </script>
+          
+        
+         
+         
+          <input class="form-control" type="text" id="post" name="post" placeholder="Write a message..." maxlength="1000" autocomplete="off" style="height: 100px"> 
+        <!--  <textarea row="2" cols="12" name="{{form.post}}"> </textarea> -->
+            
+          <br>
+          
+          <label for="image" class="glyphicon glyphicon-paperclip" >
+          <input type="file" class="image" id="image" name="image" style="display: none;">   
+          </label> 
+
+          <button type="submit" class="btn btn-primary">Send</button>
+        </form> 
+    
+    
+
+<div class="panel panel-default panel-feed">
+     
+<div class="box" style="overflow: auto;height: 500px">
+{% for post in posts %}
+   {% include 'post/partial_post.html' with post=post %}
+{% endfor %}
+</div>
+</div>
+ </div>
+</div>
+<script> 
+$(document).ready(function(){
+    $("#flip").click(function(){
+        $(".form-style-9").slideToggle("slow");
+    });
+});
+</script>
+
+{%endblock%}
+

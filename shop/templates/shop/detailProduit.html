@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+
+  {% load static    %}
+  <link rel="stylesheet" type="text/css" href="{% static 'discover/css/imageDetailProduit.css' %}"/>
+     
+<div class="row">
+ <div class="col-md-12 col-md-offset-0"> 
+  <div class="col-md-5">
+  <a class="thumbnail" href="#thumb" style="width:410px;height:410px; float: right;">
+ <img src="{{ produit.logo.url }}" style="width:390px;height:400px;">
+ <span><img src="{{ produit.logo.url }}" style="width:500px;height:500px;"></span>
+  </a></br>
+ 
+   
+
+ {% include 'reaction/reactionFORdetail.html' %}
+ </div>  
+
+ <div class="col-md-2" >
+ <div style="margin-left: 40px;margin-top: 20px">
+         {% if produit.logo1 %} 
+         <a class="thumbnail" href="#thumb" style="width:140px;height:110px;  "> 
+               <img  src="{{ produit.logo1.url }}" style="width:120px;height:100px;  ">
+               <span>
+                 <img  src="{{ produit.logo1.url }}" style="width:300px;height:300px;  ">
+               </span>
+          </a>
+
+                
+          {% endif %}
+         {% if produit.logo2 %}     
+          <a class="thumbnail" href="#thumb" style="width:140px;height:110px;  "> 
+               <img  src="{{ produit.logo2.url }}" style="width:120px;height:100px;  ">
+               <span>
+                 <img  src="{{ produit.logo2.url }}" style="width:300px;height:300px;  ">
+               </span>
+          </a>
+
+                
+         {% endif %}
+          {% if produit.logo3 %}  
+             <a class="thumbnail" href="#thumb" style="width:140px;height:110px;  "> 
+               <img  src="{{ produit.logo3.url }}" style="width:120px;height:100px; ">
+               <span>
+                 <img  src="{{ produit.logo3.url }}" style="width:300px;height:300px;  ">
+               </span>
+          </a>
+
+                
+              {% endif %}
+  </div>
+  </div>
+      
+ <div class="col-md-5">
+  
+        <div style="margin-top:100px;margin-left: 50px">      
+             <h3>product name : {{ produit.title }}</h3>  
+            <h3>product prix : {{ produit.prix }}  Dt</h3>    
+             <h3> product description : {{ produit.descreption }}</h3>  
+              <h3> product categorie : {{ produit.categorie }}</h3>  
+               <h3> product status : {{ produit.is_favorite }}</h3>  
+
+             
+</div>
+
+
+
+  </div>
+
+
+ </div>
+
+</div> 
+
+  {% if error_message %}
+    <p>{{error_message}}</p>
+   {% endif%}
+
+<div id="myModalLogin" class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+<div class="modal-dialog ">
+<div class="modal-content">
+    <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h4 class="modal-title">Login</h4>
+    </div>
+
+ <div class="modal-body">
+
+      
+    <div class="login">
+     
+      <form method="post" action="{% url 'login_userM' %}?username={{ produit.boutique.user.username }}&url={{ produit.id }}&objet={{ produit.title }}" role="form">
+       {% csrf_token %} 
+        <div class="form-group{% if form.username.errors %} has-error{% endif %}">
+          
+          <input type="text" class="form-control" id="username" name="username">
+          {% for error in form.username.errors %}
+            <label class="control-label">{{ error }}</label>
+          {% endfor %}
+        </div>
+        <div class="form-group{% if form.password.errors %} has-error{% endif %}">
+          
+          <input type="password" class="form-control" id="password" name="password">
+          {% for error in form.password.errors %}
+            <label class="control-label">{{ error }}</label>
+          {% endfor %}
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-default">Log in</button>
+          <a href="{% url 'signup' %}" class="btn btn-link">Sign up </a>
+        </div>
+
+<input class="form-control typeahead" type="hidden" id="to" name="to" value="{{ request.GET.username  }}">
+    
+      <input class="form-control typeahead" type="hidden" id="objet" name="objet" value="{{ request.GET.objet }}">
+      <input class="form-control typeahead" type="hidden" id="url" name="url" value="{{ request.GET.url }}">
+
+
+      </form>
+    </div> 
+
+
+
+  </div>
+
+   </div>
+ </div>
+</div>
+
+
+
+
+
+
+
+
+{% endblock %}
+
+
+{% load static %}
+ <script src="{% static 'reaction/js/reaction.js' %}"></script> 
+ <script src="{% static 'reaction/js/reaction.style.js' %}"></script> 
