@@ -8,7 +8,7 @@ class Reaction(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     produit = models.ForeignKey(Produit, on_delete=models.CASCADE ,null=True)
     post = models.ForeignKey(Post, on_delete=models.CASCADE ,null= True)  
-    choix = (('NORMAL', 'normal'), ('SMILE', 'smile'), ('LOVE', 'love'), ('WISH', 'wish'),('LIKE','like'),('DISLIKE','dislike'))
+    choix = (('normal', 'normal'), ('smile', 'smile'), ('love', 'love'), ('wish', 'wish'),('like','like'),('dislike','dislike'))
     type = models.CharField(max_length=255, blank=True, null=True, choices=choix)
     date = models.DateTimeField(auto_now_add = True)
 

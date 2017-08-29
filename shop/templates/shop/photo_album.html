@@ -1,0 +1,24 @@
+<span class="title">{{ title }}</span>
+<span class="count">({{ items.count }})</span>
+<span class="pull-right">
+    <label for="file_input" class="btn btn-sm btn-default">Choose images</label>
+    <input type="file" class="form-control" id="file_input" multiple>
+</span>
+<hr>
+<br>
+<div class="row items">
+    <div class="col-md-3 item" style="display: none;">
+        <span class="item-close" data-item-id="">&times;</span>
+        <img src="" alt="" class="img-responsive">
+    </div>
+    {% for item in items %}
+        <div class="col-md-3 item">
+            <span class="item-close" data-item-id="{{ item.id }}">&times;</span>
+            <img src="{{ item.image.url }}" alt="{{ item.id }}" class="img-responsive">
+        </div>
+    {% empty %}
+        <div class="text-center hint-div">
+            <span class="hint">No photos.</span>
+        </div>
+    {% endfor %}
+</div>

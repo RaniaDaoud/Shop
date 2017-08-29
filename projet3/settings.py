@@ -40,6 +40,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'rest_framework',
     'shop.apps.ProduitConfig',
     'discover.apps.DiscoverConfig',
     'reaction.apps.ReactionConfig',
@@ -52,6 +53,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+    'taggit',
+    'wish_list',
+    
+    'album',
+   
 
     'authentication',
     'messenger',
@@ -62,10 +68,15 @@ INSTALLED_APPS = [
       
     
     
-    
-
-
 ]
+
+REST_FRAMEWORK = {
+'DEFAULT_AUTHENTICATION_CLASSES': (
+'rest_framework.authentication.SessionAuthentication',
+'rest_framework.authentication.TokenAuthentication',
+)
+}
+
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
@@ -95,10 +106,12 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 
+                
             ],
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'projet3.wsgi.application'
 

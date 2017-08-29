@@ -68,13 +68,13 @@ def post_posts(request):
         'page':page,
         'posts' :posts,
         
-        'liste_posts' : liste,
+        'posts' : liste,
         'Tous':Post.objects.all().count(), 
-        'Bijoux':Post.objects.all().filter(categorie__name='Bijoux').count(), 
-        'Vetement':Post.objects.all().filter(categorie__name='vetement').count(), 
-        'Accessoires':Post.objects.all().filter(categorie__name='accessoire').count(),
-        'Maison':Post.objects.all().filter(categorie__name='meuble').count(), 
-        'Art':Post.objects.all().filter(categorie__name='arts et collections').count(),
+        'Bijoux':Post.objects.all().filter(categorie__name='jewelry').count(), 
+        'Vetement':Post.objects.all().filter(categorie__name='clothes').count(), 
+        'Accessoires':Post.objects.all().filter(categorie__name='accessory').count(),
+        'Maison':Post.objects.all().filter(categorie__name='furniture').count(), 
+        'Art':Post.objects.all().filter(categorie__name='arts & collections').count(),
     }  
     return render(request, 'post/Discover_posts.html',context)
 
@@ -151,11 +151,11 @@ def searchPost(request):
         'posts': posts, 
         'filtersPost' :filters,
         'Tous':Post.objects.all().count(), 
-        'Bijoux':post_results.filter(categorie__name='Bijoux').count(), 
-        'Vetement':post_results.filter(categorie__name='vetement').count(), 
-        'Accessoires':post_results.filter(categorie__name='accessoire').count(),
-        'Maison':post_results.filter(categorie__name='meuble').count(), 
-        'Art':post_results.filter(categorie__name='arts et collections').count(),
+        'Bijoux':post_results.filter(categorie__name='jewelry').count(), 
+        'Vetement':post_results.filter(categorie__name='clothes').count(), 
+        'Accessoires':post_results.filter(categorie__name='accessory').count(),
+        'Maison':post_results.filter(categorie__name='furniture').count(), 
+        'Art':post_results.filter(categorie__name='arts & collections').count(),
         
         
     }

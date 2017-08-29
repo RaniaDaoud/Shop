@@ -6,24 +6,33 @@
             {% csrf_token %}
 <ul>
 <li>
-    <input type="text" name="username" id="username" class="field-style field-split align-left" placeholder="Username"  value="{{ request.user }}" />
+<label for="username" class=" control-label">Your name :</label>
+    <input style="margin-left: 50px;" type="text" name="username" id="username" class="field-style " placeholder="Username"  value="{{ request.user }}" />
     
 
 </li>
 <li>
-    <input type="number" name="telephone" id="telephone" class="field-style field-split align-left" placeholder="Telephone" value="{{ form.telephone.value }}" required />
+<label for="telephone" class=" control-label">Phone :</label>
+    <input style="margin-left: 78px;" type="number" name="telephone" id="telephone" class="field-style " placeholder="Telephone" value="{{ form.telephone.value }}" required />
     
 </li>
 <li>
-
+<label for="type" class=" control-label">You are :</label>
 <select name="type" id="type" class="field-style field-full align-none" >
-    <option value="ENTERPRISE" {% if form.type.value == 'ENTREPRISE' %}selected{% endif %}>Entreprise</option>
-    <option value="INDIVIDUAL" {% if form.type.value == 'INDIVIDUAL' %}selected{% endif %}>Particulier</option>
+    <option value="ENTERPRISE" {% if form.type.value == 'ENTREPRISE' %}selected{% endif %}>company</option>
+    <option value="INDIVIDUAL" {% if form.type.value == 'INDIVIDUAL' %}selected{% endif %}>particular</option>
 </select>
 </li>
 <li>
+ <label for="description" class=" control-label">Description</label>
 <textarea name="description" id="description" class="field-style" placeholder="Description" required>{{ form.description.value }}</textarea>
 </li>
+<li>
+        <label for="message" class=" control-label">Welcome message</label>
+        
+            <textarea name="message" id="message" class="field-style">{% if form.message.value %}{{ form.message.value }}{% endif %}</textarea>
+        
+   </li>
 <li>
 <input type="submit" value="Next" class="btn btn-default pull-right" id="next"></li>
 </ul>

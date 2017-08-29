@@ -1,5 +1,6 @@
 body{
-  background-color: #1cbb9b;
+  background-image:url('/static/img/amir.jpg');
+  background-size: cover;
 }
 .login-box{
   position:relative;
@@ -86,7 +87,7 @@ box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.33);
 .u-form-group input[type="text"],
 .u-form-group input[type="email"],
 .u-form-group input[type="password"]{
-  width: calc(50% - 22px);
+  width: 500px;
   height:45px;
   outline: none;
   border: 1px solid #ddd;
@@ -109,7 +110,7 @@ box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.33);
   color: #fff;
   font-size: 14px;
   font-weight: normal;
-  padding: 14px 0;
+  padding: 14px 5px;
   border-radius: 2px;
   text-transform: uppercase;
 }

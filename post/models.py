@@ -15,7 +15,7 @@ class Categorie(models.Model) :
     
     def __str__(self):
         return self.logo.url
-
+    
 
 def group_based_uploadPost(instance, filename):
     return "post/attach/{}".format(str(now)+' -- '+filename)  

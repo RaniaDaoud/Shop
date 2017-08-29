@@ -1,0 +1,17 @@
+span.title {
+    font-size: 1.4em;
+}
+#file_input {
+    display: none;
+}
+.item:hover .item-close {
+    display: inline;
+}
+.item-close {
+    /*display: none; */
+    font-size: 1.5em;
+    position: absolute;
+    top: 0;
+    left: 22px;
+    cursor: pointer;
+}

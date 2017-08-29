@@ -31,7 +31,7 @@
                     
                     <img src="{{ boutique.logo.url }}" class="img-responsive" style="width:270px;height:200px">
                       <h3> {{ boutique.name }} </h3> 
-                       créee le {{ boutique.date }} 
+                       created at {{ boutique.date }} 
 
                        
                      <h4>   Description : {{commercant.description}} </h4>
@@ -44,10 +44,13 @@
                   
                 </div>
             </div>
+             <span class="btn btn-primary" style="margin-left: 110px">
+             <a href="{% url 'album1' commercant.id %}" style="color: white"> Album </a>
+             </span>
+             
         </div>
 
-
-
+ 
 <div class="row">               
     {% for produit in produits %}
          {% if produit.is_favorite == True %}
@@ -90,7 +93,7 @@
 
             
   
-    <div class="tooltip1">Par {{ produit.boutique.user }}
+    <div class="tooltip1">By {{ produit.boutique.user }}
  <!--   <span class="tooltiptext">From {{ produit.boutique.name }}</span>  -->
    </div>
 

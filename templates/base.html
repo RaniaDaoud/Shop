@@ -21,8 +21,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
-
-    {% load static %}
+       {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'discover/slider/slider.css' %}">
     <script type="text/javascript" src="{% static 'discover/slider/imported/bootstrap-slider.js' %}"></script>
     <script src="{% static 'discover/js/imported/jquery.typeahead.bundle.js' %}"></script>
@@ -40,20 +39,17 @@
     <script src="{% static 'discover/js/imported/menu.filter.js' %}"> </script>
    <link rel="stylesheet" type="text/css" href="{% static 'discover/css/tooltip.user.css' %}"/> 
    <link rel="stylesheet" type="text/css" href="{% static 'discover/css/imported/menu.filter.css' %}"/> 
+   
 
-<!--        iiiiiiiii        
-  <link href="{% static 'css/feeds.css' %}" rel="stylesheet">
-  <script src="{% static 'js/jquery.bullseye-1.0-min.js' %}"></script>
-  <script src="{% static 'js/feeds.js' %}"></script>  -->
-  <script src="{% static 'css/post.css' %}"></script>
-  <script src="{% static 'js/post.js' %}"></script>
 
-<link rel="stylesheet" type="text/css" href="{% static 'css/comment.css' %}">
-<script type="text/javascript" src="{% static 'js/comment.js' %}"></script>
   
+
+
+
+
   
-    
-    
+   
+ <script type="text/javascript" src="{% static 'js/csrf.js' %}"></script>
   
 </head>
 
@@ -69,7 +65,8 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="{% url 'discover:products' %}">Silver</a> 
+                    <a class="navbar-brand" href="{% url 'discover:products' %}">
+                    <span class="glyphicon glyphicon-home"></span>  Silver</a> 
 <!--
   <div class="dropdown show">
   <a class="btn btn-secondary dropdown-toggle" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -88,31 +85,46 @@
         <!-- Items -->
         <div class="collapse navbar-collapse" id="topNavBar">
             <ul class="nav navbar-nav">
-                <li class="{% block albums_active %}{% endblock %}"><a href="{% url 'boutique:index' %}"><span class="glyphicon glyphicon" aria-hidden="true"></span>&nbsp; Boutique</a></li>
+                
              
                         <li role="presentation" {% if produit.is_favorite == True %}class="active"{% endif %}><a href="{% url 'discover:postlist' %}"><span class="glyphicon glyphicon" aria-hidden="true"></span>&nbsp; Discover</a></li>
 
-                  <li class="{% block post_active %}{% endblock %}"><a href="{% url 'postALL' %}"><span class="glyphicon glyphicon" aria-hidden="true"></span>&nbsp;Post</a></li>
+                  <li class="{% block post_active %}{% endblock %}"><a href="{% url 'postALL' %}">Post</a></li>
 
             </ul>
-            {% if produits %}
-             <form class="navbar-form navbar-left" role="search" method="get" action="{% url 'discover:search' %}">
-                <div class="form-group">
-                    <input type="text" class="form-control typeahead" placeholder="search..." id="recherche" name="recherche" value="{{ request.GET.recherche }}">
-                    
-                </div>
-                <button type="submit" class="btn btn-default">Search</button>
-          
-            </form>
+            {% if produits and not posts %}
+
+<form class="navbar-form navbar-left" role="search" method="get" action="{% url 'discover:search' %}">
+  <div class="form-group">
+      <input type="text" class="form-control typeahead" placeholder="name, description, tag1, tag2,..." id="recherche" name="recherche" value="{{ request.GET.recherche }}" style="width: 500px;">
+      
+  </div>
+  <button type="submit" class="btn btn-default">Search</button>
+
+</form>
+
+<!--
+<form class="navbar-form navbar-left"  method="get" action="{% url 'discover:search' %}">
+<div class="form-group">
+<input type="text" class="form-control typeahead" id="tags" placeholder="tag1, tag2, ..." name="tags" value="{% if tags %}{{ tags | join:', ' }}{% endif %}" name="tags">
+</div>
+
+    <button type="submit" class="btn btn-default">Search</button>
+    <input type="hidden" name="recherche" value="{{ request.GET.recherche }}"/>
+    <input type="hidden" name="catego" value="{{ request.GET.catego }}"/>
+
+    
+</form> 
+{{request.GET.tags}} -->
              {% endif %}
-             {% if posts %}
+             {% if posts and not produits %}
              <form class="navbar-form navbar-left" role="search" method="get" action="{% url 'searchPost' %}">
                 <div class="form-group">
                     <input type="text" class="form-control typeahead" placeholder="search..." id="recherche1" name="recherche1" value="{{ request.GET.recherche1 }}">
                     
                 </div>
                 <button type="submit" class="btn btn-default">Search</button>
-          
+            
             </form>
              {% endif %}
 
@@ -129,7 +141,7 @@
    
 <ul class="nav navbar-nav navbar-right">
 
-{% if user.is_authenticated %} 
+{% if request.user.is_authenticated %} 
 
 <ul class="nav navbar-nav">
 <li>
@@ -148,18 +160,29 @@
 
 
 
-
+            
                <li>
-                  <a href="{% url 'profile' user.username %}" style="float: right;">{{ user.profile.get_screen_name }}</a>
+                  <a href="{% url 'profile' request.user.username %}" style="float: right;">{{ request.user.profile.get_screen_name }}</a>
                 </li>
+
                 
                 <li class="dropdown" style="margin-bottom: 10px; float: right;">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="caret"></b></a>
                   <ul class="dropdown-menu">
+
+                   <li class="{% block albums_active %}{% endblock %}"><a href="{% url 'boutique:index' %}"><span class="glyphicon glyphicon-shopping-cart"> Shop</span></a></li> 
                     
-                    <li><a href="{% url 'settings' %}">Account Settings</a></li>
                     
-                    <li><a href="{% url 'logout' %}">Log out </a></li>
+                    {% if request.user.utilisateur %}
+                    <li><a href="{% url 'album' %}"><span class="glyphicon glyphicon-picture"> Album</span></a></li>
+                    {% endif %}
+                    
+                    <li><a href="{% url 'wishlist' request.user.id %}">
+                    <span class="glyphicon glyphicon-star"> Wishlist</span></a></li>
+                    <li><a href="{% url 'settings' %}"><span class="glyphicon glyphicon-cog"> Account Settings</span></a></li>
+                    <li role="separator" class="divider"></li>
+                    
+                    <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-lock"> Log out </span></a></li>
                  
                 </li>
    {% else %}   

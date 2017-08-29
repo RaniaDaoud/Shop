@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% block title %}wishlist{% endblock %}
+{% load staticfiles %}
+
+{% block body %}
+<div class="container-fluid songs-container">
+
+    <div class="row">
+
+        <!-- Left Album Info -->
+        <div class="col-md-3">
+            <div class="panel panel-default">
+                <div  class="panel-body">
+
+
+{% if request.user == user %}
+<div class="dropdown" style="padding: 20px; ">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-left: 60px">
+    New wishlist
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+  <form role="form" action="{% url 'create_wishlist' %}" method="post">
+    {% csrf_token %}
+        <div style="padding:10px " class="text-center">
+            
+            <input type="text" name="wishlist_name" id="un" value="" placeholder="Name" data-theme="a" style="width: 100% ;padding-bottom:10px"> <br>
+            <button type="submit" class="btn " style="padding:10px;align-self: center;">Add</button>
+        </div>
+    </form>
+</div>
+</div>
+{% endif %}
+
+
+
+
+
+
+
+
+            <div data-role="listview">
+            {% for wishlist, value in counter %}
+             <a href="{% url 'wishlist' wishlist.user.id wishlist.name %}?{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}" class="list-group-item">
+
+             <span style="color: #505050"><small>{{ wishlist.name  }}</small></span> <span class="badge center-block">{{value}}</span>
+             </a>
+             {% if request.user == user %}
+            <a href="{% url 'delete_wishlist' wishlist.id %}">
+            <span class="glyphicon glyphicon-trash pull-right small"></span>
+            </a><br>
+            {% endif %}
+            {% endfor %}
+            </div>
+{#                       </div>#}
+{#            {% endif %}#}
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Right Song Info -->
+        <style type="text/css">
+          h2 {
+    text-align: center;
+    text-transform: uppercase;
+   
+        }
+        </style>
+       <div class="col-sm-8 col-md-9">
+                    <h2>    <em>    {{name}}     </em> </h2>
+
+            <div class="container-fluid produits-container">
+                     
+              {% include 'wishlist/list_prod_wishlist.html' with produits=prods wishlist=wishlist %} 
+            </div>
+      </div>
+
+                                </div>
+
+
+
+      
+
+                      
+
+                 </div>
+
+                 
+
+       
+
+
+{% endblock %}

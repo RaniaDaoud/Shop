@@ -13,19 +13,19 @@
        <div class="thumbnail"  >
         <input type="hidden" name="postID" id="postID" value="{{ post.id }}"
       
-      <h3> <a href="{% url 'profile' post.user.username %}"><img src="{{ post.user.profile.get_picture }}" class="user" style="width:40px;height: 40px;float: left;"></a>
+      <h3> <a href="{% url 'profile' post.user.username %}"><img src="{{ post.user.profile.get_picture }}" class="user" style="width:40px;height: 50px;float: left;padding-bottom: 10px"></a>
        <a href="{% url 'profile' post.user.username %}" style="padding: 10px">{{ post.user.profile.get_screen_name }}</a> </h3>
       <small style="font-size:x-small;">{{ post.date|naturaltime }}</small>
 <!--    <div style="float: right;">   {{ post.date|naturaltime }} </div>  -->
-    <div class="caption">
-<form action="{% url 'DetailPost' post.id %}" method="get" style="padding-top: 10px;">
+    <div class="caption" >
+<form action="{% url 'DetailPost' post.id %}" method="get" style="display: inline;position: relative;">
  
   <input type="hidden" name="post_id" id="post_id" value="{{ post.id }}" >
-  <button type="submit" style="background: none">
+  <button type="submit" style="background: none; ">
      {% if post.image %}
-    <img src="/image/{{ post.image }}" style="width:150px;height: 150px;"> <br>
+    <img src="/image/{{ post.image }}" style="width:180px;height: 150px;"> <br>
     {% else %}
-    <img src="/image/{{ post.categorie.logo }}" class="user" style="width:150px;height: 150px;"><br>
+    <img src="/image/{{ post.categorie.logo }}" class="user" style="width:180px;height: 150px;"><br>
     {% endif %}
   </button>
    <input type="hidden" name="username" value="{{ post.user }}"/>

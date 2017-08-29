@@ -3,24 +3,31 @@
      
        
 
-  <div class="feed-container" style="padding: 10px;">
+  <div class="feed-container panel" style="padding: 10px;">
   <div class="row" >
-   <div class="col-md-12 col-md-offset-0">
-   <h3> <a href="{% url 'profile' post.user.username %}"><img src="{{ post.user.profile.get_picture }}" class="user" style="width:50px;height: 50px"></a>  
+  
+   <h3 style="margin-left: 10px"> <a href="{% url 'profile' post.user.username %}"><img src="{{ post.user.profile.get_picture }}" class="user" style="width:50px;height: 50px"></a>  
 
   <a href="{% url 'profile' post.user.username %}" >{{ post.user.profile.get_screen_name }}</a> 
   
-  </h3>
-  <small>{{ post.date|naturaltime }}</small>
+  
+  <small>{{ post.date|naturaltime }}</small> </h3>
   <!-- <div style="height: 100px;width: 100px;"> {{ post.categorie.url }} </div> -->
-   
+    <div class="col-md-10 col-md-offset-1 text-align">
+    <div class="row">
+    <div class="col-md-6 panel" style="background-color: #f2f2f2;margin-top: 50px">
+    <p>{{ post.post }} </p>
+    </div>
+    <div class="col-md-6">
    {% if post.image %}
-    <img src="/image/{{ post.image }}" style="width:250px;height: 250px;margin-left: 300px;"> <br>
+    <img src="/image/{{ post.image }}" style="width:200px;height: 200px;float: right;border: initial;"> <br>
     {% else %}
-    <img src="/image/{{ post.categorie.logo }}" class="user" style="width:250px;height: 250px;margin-left: 300px"><br>
+    <img src="/image/{{ post.categorie.logo }}" class="user" style="width:200px;height: 200px;float: right;"><br>
     {% endif %} <br>
     </div>
+     
+    </div> 
     </div>
-     <p>{{ post.post }} </p>
-   ---------------------------------------------
-  </div>
+    </div>
+   
+   </div>

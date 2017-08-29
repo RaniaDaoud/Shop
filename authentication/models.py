@@ -19,6 +19,7 @@ class Profile(models.Model):
     location = models.CharField(max_length=50, null=True, blank=True)
     url = models.CharField(max_length=50, null=True, blank=True)
     job_title = models.CharField(max_length=50, null=True, blank=True)
+    age = models.IntegerField(default=30)
 
     class Meta:
         db_table = 'auth_profile'
@@ -147,6 +148,7 @@ class Utilisateur(models.Model):
     description = models.CharField(max_length=255)
     telephone = models.IntegerField(default=None)
     type = models.CharField(max_length=255, choices=(('ENTERPRISE', 'Entreprise'), ('INDIVIDUAL', 'Particulier')),null=True)
+    message = models.TextField(max_length=255, blank=False, null=False, default="Welcome to my store, how can I help you?")
 
     def __str__(self):
         return self.user.username    

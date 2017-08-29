@@ -4,7 +4,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
 
-from authentication import views as bootcamp_auth_views
+
 from settings_all import views as core_views
 from reaction import views as reaction_views
 
@@ -14,6 +14,16 @@ from reaction import views as reaction_views
 
 
 urlpatterns = [
+    url(r'^api/shop/', include("shop.api.urls", namespace='shop-api')),
+    url(r'^api/notification/', include("notification.api.urls", namespace='notification-api')),
+    url(r'^api/msg/', include("messenger.api.urls", namespace='messenger-api')),
+    url(r'^api/reaction/', include("reaction.api.urls", namespace='reaction-api')),
+
+    url(r'^album/', include('album.urls')),
+     url(r'^whishlist/', include('wish_list.urls')),
+    
+    
+
     url(r'^', include('post.urls')),
     url(r'^reactPost/(?P<post_id>\d+)/$', reaction_views.reactPost, name='reactPost'),
    

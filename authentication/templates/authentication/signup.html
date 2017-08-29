@@ -24,6 +24,10 @@
           {% endfor %}
         </div>
       {% endfor %}
+      <div class="form-group{% if field.errors %} has-error{% endif %}">
+        <label for="age">Age</label> <br>
+        <input type="number" name="age" style="width: 780px">
+        </div>
       <button type="submit" class="btn btn-primary btn-lg">{% trans 'Create an account' %}</button>
     </form>
   </div>

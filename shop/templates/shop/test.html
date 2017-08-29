@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+{% block title %}Add a New produit{% endblock %}
+{% block boutiques_active %}active{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+
+    
+
+        <!-- Right produit Info -->
+        <div class="col-sm-8 col-md-9">
+
+          
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h3>Add a New produit</h3>
+                    {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+                    <form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">  {% csrf_token %}
+                   
+                 <!--   {{ form.as_p }}   -->
+                
+                    
+                     
+                        <input type="hidden" name="boutique" value="{{ boutique }}">
+                       {#% include 'shop/form-template.html' %#}  
+
+<ul>
+<div class="form-group">
+    <div class="row">
+      <div class="col-md-12">
+        <label for="title" class="col-md-2 control-label">Nom du produit</label>
+        <div class="col-md-10">
+
+    <input type="text" name="title" id="title" class="field-style field-split align-left" {% if form.title.value == None %} placeholder="nom du produit" {% else %} value="{{ form.title.value }}" {% endif %} required/>
+    </div></div></div></div>
+<div class="form-group">
+    <div class="row">
+      <div class="col-md-12">
+        <label for="prix" class="col-md-2 control-label">Prix</label>
+        <div class="col-md-10">
+    <input type="number" name="prix" id="prix" class="field-style field-split align-left" placeholder="prix" value="{{ form.prix.value }}" required />
+    
+</div></div></div></div>
+<li>
+
+<select name="categorie" id="categorie" class="field-style field-full align-none" >
+    <option value="Tous les produits" {% if form.categorie.value == 'Tous' %}selected{% endif %}>Tous les produits</option>
+    <option value="Bijoux" {% if form.categorie.value == 'Bijoux' %}selected{% endif %}>Bijoux</option>
+    <option value="Maison et ameublement" {% if form.categorie.value == 'Maison' %}selected{% endif %}>Maison et ameublement</option>
+    <option value="Vetement" {% if form.categorie.value == 'Vetement' %}selected{% endif %}>Vetement</option>
+    <option value="Art et collections" {% if form.categorie.value == 'Art' %}selected{% endif %}>Art et collections</option>
+    <option value="Accessoires" {% if form.categorie.value == 'Accessoires' %}selected{% endif %}>Accessoires</option>
+</select>
+</li>
+<li>
+<!--  type  -->
+<select name="typeProduit" id="typeProduit" class="field-style field-full align-none" >
+    <option value="Faits à main" {% if form.typeProduit.value == 'Faits' %}selected{% endif %}>Faits à main</option>
+    <option value="Vintage" {% if form.typeProduit.value == 'Vintage' %}selected{% endif %}>Vintage</option>
+</select>    
+</li>
+
+  <li>
+    <input type="number" name="quantite" id="quantite" class="field-style field-split align-left" placeholder="quantite" value="{{ form.quantite.value }}" required />
+    
+</li>
+<li>
+<textarea name="descreption" id="descreption" class="field-style" placeholder="Description" required>{{ form.descreption.value }}</textarea>
+</li>
+<!--  actif  -->
+<div class="form-group">
+    <div class="row">
+      <div class="col-md-12">
+        <label for="is_favorite" class="col-md-2 control-label">Actif</label>
+        <div class="col-md-10">
+
+      <input type="radio" name="is_favorite" value="is_favorite" id="is_favorite">
+
+</div>
+</div>
+</div>
+</div>
+
+<!-- genre  -->
+
+<div class="form-group">
+    <div class="row">
+      <div class="col-md-12">
+        <label for="genre" class="col-md-2 control-label">Genre:</label>
+        <div class="col-md-10">
+<input type="radio" name="genre" value="homme et femme" id="HommeFemme" checked> Homme et Femme
+<input type="radio" name="genre" value="homme" id="homme"> Homme
+<input type="radio" name="genre" value="femme" id="femme"> Femme
+</div>
+</div>
+</div>
+</div>
+
+
+
+<!--  pour -->
+<div class="form-group">
+    <div class="row">
+      <div class="col-md-12">
+        <label for="pour" class="col-md-2 control-label">Pour:</label>
+        <div class="col-md-10">
+<input type="checkbox" name="pour" value="standard" id="standard" checked> Standard
+<input type="checkbox" name="pour" value="bebe" id="bebe"> Bébé
+<input type="checkbox" name="pour" value="enfant" id="enfant"> Enfant
+<input type="checkbox" name="pour" value="jeune" id="jeune"> Jeune
+<input type="checkbox" name="pour" value="adulte" id="adulte"> Adulte
+</div>
+</div>
+</div>
+</div>
+
+
+<!-- tags -->
+           <div class="form-group">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <label for="tags" class="col-md-2 control-label">Tags:</label>
+                      <div class="col-md-10">
+<input type="text" id="tags" name="tags" class="form-control" placeholder="Add tags here..." autocomplete="off">
+  <span class="hint">example : tag1, tag2, tag3 ....</span>
+
+                      </div>
+                    </div>
+                  </div>
+            </div> 
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-success">Submit</button>
+                            </div>
+                        </div>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+

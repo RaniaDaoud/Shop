@@ -1,55 +1,69 @@
 body{
 	
-  background-image:url('/static/img/amir.jpg');
+  background-image:url('/static/img/grey.jpg');
   background-size: cover;
 }
 #flip { 
     
 
-    padding: 5px;
+    padding: 10px;
     text-align: center;
-    background-color:   #87CEFA;
+    background-color:   #bfbfbf;
     border: solid 1px #c3c3c3;
 }
 
 
 .btn-group .button {
-    background-color: #FFFFE0; /* Green */
-    border-radius: 12px;
-    color: grey;
-    padding: 5px 20px;
+  padding-top: 5px;
+  padding-left: 35px;
+   /* background-color: #FFFFE0;  Green */
+   background-color: transparent;
+   /* border-radius: 9px; */
+   border: none;
+    color: #262626;
+    /*padding: 3px 16px;  */
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 14px;
     cursor: pointer;
-    width: 240px;
-    display: block;
+    width: 220px;
+    /*display: block; */
 }
+.btn-group1 .button1 {
+  text-align: left;
+   /* background-color: #FFFFE0;  Green */
+   background-color: transparent;
+   /* border-radius: 9px; */
+   border: none;
+    color: #262626;
+    /*padding: 3px 16px;  */
+    /*display: inline-block; */
+    font-size: 12px;
+    cursor: pointer;
+    width: 120px; 
+    display: block; 
+}
+
 
 .btn-group .button:not(:last-child) {
     border-bottom: none; /* Prevent double borders */
 }
 
 .btn-group .button:hover {
-    background-color: #DCDCDC;
+    background-color: #DCDCDC; 
+    width: 250px;
+    z-index: none;
+   
 }
-.btn-group1 .button {
-    background-color: #FFFFFF; /* Green */
-    border: none;
-    color: grey;
-    padding: 7px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    cursor: pointer;
-    float: left;
+.btn-group1 .button1:not(:last-child) {
+    border-bottom: none; /* Prevent double borders */
 }
 
-.btn-group1 .button:hover {
-    background-color: #DCDCDC;
+.btn-group1 .button1:hover {
+    background-color: #DCDCDC; 
 }
+
 
 .typeahead, .tt-query, .tt-hint {
   border: 1px solid #CCCCCC;
@@ -81,6 +95,7 @@ body{
   margin-top: 8px;
   padding: 8px 0;
   width: 300px;
+  left :100px;
 }
 .tt-suggestion {
   font-size: 1.2em;

@@ -10,7 +10,7 @@
           <input type="hidden" name="to" id="to" value="{{ active }}">
           <input type="hidden" name="objet" id="objet" value="{{ produit.title }}">
           <input type="hidden" name="url" id="url" value="{{ produit.id }}">
-          <button type="Submit" >  <img src="{{ produit.logo.url }}"  style="width:200px;height:160px;" class="img-responsive"></button> 
+          <button type="Submit" style="background-color: transparent;height: 160px" >  <img src="{{ produit.logo.url }}"  style="width:220px;height:140px;" class="img-responsive"></button> 
           
            <div class="success_message" class="ajax_response" style="float:left"></div>
  
@@ -28,15 +28,15 @@
        <form action="{% url 'boutique:DetailView1' produit.id %}" method="get" style="display: inline;">
         {% csrf_token %}
         <input type="hidden" name="produit_id" value="{{ produit.id }}" />
-        <button type="submit" class="btn btn-danger btn-xs">
-            <span class="glyphicon glyphicon-zoom-in"></span>&nbsp; View Detail /{{produit.boutique.user}}
+        <button type="submit" class="btn btn-danger btn-xs" style="margin-left: 25px">
+            <span class="glyphicon glyphicon-zoom-in"></span>&nbsp; View Detail
         </button>
          <input type="hidden" name="username" value="{{ produit.boutique.user }}"/>
         
          <input type="hidden" name="objet" value="{{ produit.title}}"/>
         <input type="hidden" name="url" value="{{ produit.url}}"/>
         </form>  
- <a href="#{{ produit.id }}" role="button" class="btn"  data-toggle="modal">Popup images</a>
+ <a href="#{{ produit.id }}" role="button" class="btn"  data-toggle="modal" style="margin-left: 20px">More images</a>
       
        
     </div>
@@ -47,7 +47,7 @@
 
 
   {% endif %}
-    {% empty %} Il n'y a pas de produits
+    {% empty %} No products
 {% endfor %}
 
 {% load static %}

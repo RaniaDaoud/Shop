@@ -21,8 +21,13 @@ def signup(request):
             username = form.cleaned_data.get('username')
             email = form.cleaned_data.get('email')
             password = form.cleaned_data.get('password')
-            User.objects.create_user(username=username, password=password,
-                                     email=email)
+            age = request.POST.get('age')
+            print(age)
+
+            user = User.objects.create_user(username=username, password=password,
+                                     email=email )
+            user.profile.age = age
+            user.profile.save()
             user = authenticate(username=username, password=password)
             login(request, user)
             welcome_post = '{0} has joined the network.'.format(user.username,

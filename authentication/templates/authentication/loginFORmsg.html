@@ -18,18 +18,11 @@
 <body>
     <div class="login-box">
         <div class="lb-header">
-            <a href="#" class="active" id="login-box-link">Login</a>
-            <a href="{% url 'signup' %}" id="signup-box-link">Sign Up</a>
+            <a href="#" class="active" id="login-box-link" style="float: left;">Login</a>
+            <a href="{% url 'signup' %}" id="signup-box-link" style="float: right;">Sign Up</a>
         </div>
     <div class="social-login">
-      <a href="#">
-        <i class="fa fa-facebook fa-lg"></i>
-        Login in with facebook
-      </a>
-      <a href="#">
-        <i class="fa fa-google-plus fa-lg"></i>
-        log in with Google
-      </a>
+      
     </div>
    <form method="post" action="{% url 'login_userM' %}?username={{ produit.boutique.user.username }}&url={{ produit.id }}&objet={{ produit.title }}" role="form">
        {% csrf_token %}
@@ -48,9 +41,9 @@
         </div>
        </div>
         <div class="u-form-group">
-            <div class="col-sm-10">
-                <button type="submit" class="btn btn-success">Submit</button>
-            </div>
+            
+                <button type="submit" class="btn btn-success" style="margin-left: 120px;">Submit</button>
+            
         </div>
 
     </form>

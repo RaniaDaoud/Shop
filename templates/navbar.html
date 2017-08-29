@@ -37,15 +37,18 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="{% url 'boutique:index' %}">Boutique</a>
+                    <a class="navbar-brand" href="{% url 'discover:products' %}">
+<span class="glyphicon glyphicon-home"></span>
+                    Silver</a>
                 </div>
 
         <!-- Items -->
 <div class="collapse navbar-collapse" id="topNavBar">
 <ul class="nav navbar-nav">
-    <li class="{% block albums_active %}{% endblock %}"><a href="{% url 'boutique:index' %}"><span class="glyphicon glyphicon" aria-hidden="true"></span>&nbsp; Boutiques</a></li>
+  <!--  <li class="{% block albums_active %}{% endblock %}"><a href="{% url 'boutique:index' %}"><span class="glyphicon glyphicon" aria-hidden="true"></span>&nbsp; Boutiques</a></li> -->
  
             <li role="presentation" {% if produit.is_favorite == True %}class="active"{% endif %}><a href="{% url 'discover:postlist' %}"><span class="glyphicon glyphicon" aria-hidden="true"></span>&nbsp; Discover</a></li>
+            <li class="{% block post_active %}{% endblock %}"><a href="{% url 'postALL' %}">Post</a></li>
 </ul>
 
      
@@ -70,10 +73,19 @@
                     <li class="dropdown" style="margin-bottom: 10px;">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="caret"></b></a>
                       <ul class="dropdown-menu">
-                        <li><a href="{% url 'inbox' %}"><span class="badge pull-right" id="unread-count">0</span> Inbox</a></li>
-                        <li><a href="{% url 'settings' %}">Account Settings</a></li>
-                        <li class="divider"></li>
-                        <li><a href="{% url 'logout' %}">Log out </a></li>
+                        <li ><a href="{% url 'boutique:index' %}"><span class="glyphicon glyphicon-shopping-cart"> Shop</span></a></li> 
+                    
+                    
+                    {% if request.user.utilisateur %}
+                    <li><a href="{% url 'album' %}"><span class="glyphicon glyphicon-picture"> Album</span></a></li>
+                    {% endif %}
+                    
+                    <li><a href="{% url 'wishlist' request.user.id %}">
+                    <span class="glyphicon glyphicon-star"> Wishlist</span></a></li>
+                    <li><a href="{% url 'settings' %}"><span class="glyphicon glyphicon-cog"> Account Settings</span></a></li>
+                    <li role="separator" class="divider"></li>
+                    
+                    <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-lock"> Log out </span></a></li>
                       </ul>
                     </li>
        {% else %}   

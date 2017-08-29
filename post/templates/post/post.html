@@ -2,25 +2,29 @@
 
 
 {% block body %}
-
-<img src="{{ user.profile.get_picture }}" class="picture" style="height: 100px;width: 100px;" >
+{% load static %}
+<script src="{% static 'css/post.css' %}"></script>
+<script src="{% static 'js/post.js' %}"></script>
 
 <div class="row">
-<div class="col-md-6 col-md-offset-3">
-<div id="flip" ">Post</div> 
+<div class="col-md-10 col-md-offset-1">
+<div class="col-md-3">
+<img src="{{ user.profile.get_picture }}" class="picture" style="height: 200px;width: 200px;border: inset;" >
+ </div>
+ <div class="col-md-9">
+<div id="flip" style="height: 40px;" >Post</div> 
                 
        
-       <form class="form-style-9" action="{% url 'post' %}" id="post" method="post" enctype="multipart/form-data" style="display: none">
-        
+       <form class="form-style-9" action="{% url 'post' %}" id="post" method="post" enctype="multipart/form-data" style="display: none;width: 700px">        
           {% csrf_token %}
 
          
-
+          <p>Select a category :</p>
          {% for value, text in form.categorie.field.choices %}
         
              <div class="col-md-4" style="padding:10px">
-                <img src="{{text}}" class="img-responsive btn-radio img-radio" style="width: 120px;height: 120px;border: double;">
-                
+                <img src="{{text}}" class="img-responsive btn-radio img-radio" style="width: 160px;height: 120px;border: double;">
+                   
                 <input type="radio" name="categorie" id="{{value}}" class="hidden" value="{{value}}">
               </div> 
 
@@ -40,7 +44,6 @@
 });
      </script>
           
-        
          
          
           <input class="form-control" type="text" id="post" name="post" placeholder="Write a message..." maxlength="1000" autocomplete="off" style="height: 100px"> 
@@ -57,14 +60,15 @@
     
     
 
-<div class="panel panel-default panel-feed">
+<div class="panel panel-default panel-feed" >
      
-<div class="box" style="overflow: auto;height: 500px">
+<div class="box" style="overflow: auto;height: 700px;">
 {% for post in posts %}
    {% include 'post/partial_post.html' with post=post %}
 {% endfor %}
 </div>
 </div>
+ </div>
  </div>
 </div>
 <script> 

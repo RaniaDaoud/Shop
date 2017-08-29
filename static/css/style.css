@@ -7,9 +7,9 @@ body{
 #flip { 
     
 
-    padding: 5px;
+    padding: 10px;
     text-align: center;
-    background-color:   #87CEFA;
+    background-color:   #bfbfbf;
     border: solid 1px #c3c3c3;
 }
 
@@ -66,6 +66,7 @@ body{
   outline: medium none;
   padding: 4px 12px;
   width: 300px;
+  left :100px;
 }
 .typeahead {
   background-color: #FFFFFF;
@@ -87,6 +88,7 @@ body{
   margin-top: 8px;
   padding: 8px 0;
   width: 300px;
+
 }
 .tt-suggestion {
   font-size: 1.2em;

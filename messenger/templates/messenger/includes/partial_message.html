@@ -9,11 +9,11 @@
         {{ message.from_user.profile.get_screen_name }}
       </a>
     </h5>
-   {% if message.objet   %}
+   {% if message.produit   %}
    <div style="overflow: auto;">
   <a href=" http://127.0.0.1:8000/boutique/produit/{{message.produit.id }}" > <img src="{{ message.produit.logo.url }}" style="width:140px;height:140px;float: left;"> </a>
     
-   <h4><a href=" http://127.0.0.1:8000/boutique/produit/{{message.produit.id }}" style="margin-left: 20px"> {{ message.objet}} </a> </h4>
+   <h4><a href=" http://127.0.0.1:8000/boutique/produit/{{message.produit.id }}" style="margin-left: 20px">{% if message.objet %} {{ message.objet}} {% endif %}</a> </h4>
    </div>
    
   

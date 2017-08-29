@@ -28,7 +28,7 @@ class Message(models.Model):
         db_table = 'messages_message'
 
     def __str__(self):
-        return self.message + '-' + self.objet 
+        return self.date  
 
     @staticmethod
     def send_message(from_user, to_user, message='', objet=None, produit=None, attachement=None):

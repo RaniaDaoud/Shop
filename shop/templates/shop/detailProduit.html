@@ -5,75 +5,205 @@
 
   {% load static    %}
   <link rel="stylesheet" type="text/css" href="{% static 'discover/css/imageDetailProduit.css' %}"/>
-     
-<div class="row">
- <div class="col-md-12 col-md-offset-0"> 
-  <div class="col-md-5">
-  <a class="thumbnail" href="#thumb" style="width:410px;height:410px; float: right;">
- <img src="{{ produit.logo.url }}" style="width:390px;height:400px;">
- <span><img src="{{ produit.logo.url }}" style="width:500px;height:500px;"></span>
-  </a></br>
- 
    
 
- {% include 'reaction/reactionFORdetail.html' %}
- </div>  
+   <div class="row">
+    <div class="col-md-1" style="padding-top: 50px">
+   {% include 'reaction/reactionFORdetail.html' %}
+   </div>
+    <div class="col-md-5" >
+ <!--  <div class="container-fluid" style="width: 900px;background-color: white;">
+   <div class="row"> 
+  
+  
+    <div class="col-md-4"> -->
+<!-- <a class="thumbnail" href="#thumb" style="width:410px;height:420px; float: right;">
+   <img  src="{{ produit.logo.url }}" alt="" style="width:410px;height:410px; float: right;">
+ </a> -->
+    <style type="text/css">
+      h2 {
+    text-align: center;
+    text-transform: uppercase;
+    color: black;
+   
+}
+#trait_dessus
+{
+border-top: 1px solid #000;
+width : 460px;
+} 
 
- <div class="col-md-2" >
- <div style="margin-left: 40px;margin-top: 20px">
-         {% if produit.logo1 %} 
-         <a class="thumbnail" href="#thumb" style="width:140px;height:110px;  "> 
-               <img  src="{{ produit.logo1.url }}" style="width:120px;height:100px;  ">
-               <span>
-                 <img  src="{{ produit.logo1.url }}" style="width:300px;height:300px;  ">
-               </span>
-          </a>
+    </style>
 
+    
+<!--
+   {% if produit.logo1 %}
+  <div id="myCarousel" class="carousel slide" data-ride="carousel" style="width: 500px;height:450px;margin-top: 15px;margin-left: 60px">
+   
+    <div class="carousel-inner">
+      <div class="item active">
+        <img  src="{{ produit.logo.url }}"  alt="" style="width: 500px;height: 450px">
+      </div>
+
+      <div class="item">
+        {% if produit.logo1 %} 
+        
+               <img  src="{{ produit.logo1.url }}" style="width: 500px;height: 350px;margin-top: 50px">
                 
           {% endif %}
-         {% if produit.logo2 %}     
-          <a class="thumbnail" href="#thumb" style="width:140px;height:110px;  "> 
-               <img  src="{{ produit.logo2.url }}" style="width:120px;height:100px;  ">
-               <span>
-                 <img  src="{{ produit.logo2.url }}" style="width:300px;height:300px;  ">
-               </span>
-          </a>
-
+      </div>
+    
+      <div class="item">
+       {% if produit.logo2 %}     
+          
+               <img  src="{{ produit.logo2.url }}" style="width: 500px;height: 350px;margin-top: 50px">
                 
          {% endif %}
-          {% if produit.logo3 %}  
-             <a class="thumbnail" href="#thumb" style="width:140px;height:110px;  "> 
-               <img  src="{{ produit.logo3.url }}" style="width:120px;height:100px; ">
-               <span>
-                 <img  src="{{ produit.logo3.url }}" style="width:300px;height:300px;  ">
-               </span>
-          </a>
-
-                
+      </div>
+      <div class="item">
+       {% if produit.logo3 %}  
+            
+               <img  src="{{ produit.logo3.url }}" style="width: 500px;height: 350px;margin-top: 50px">
+               
               {% endif %}
-  </div>
-  </div>
-      
- <div class="col-md-5">
-  
-        <div style="margin-top:100px;margin-left: 50px">      
-             <h3>product name : {{ produit.title }}</h3>  
-            <h3>product prix : {{ produit.prix }}  Dt</h3>    
-             <h3> product description : {{ produit.descreption }}</h3>  
-              <h3> product categorie : {{ produit.categorie }}</h3>  
-               <h3> product status : {{ produit.is_favorite }}</h3>  
+      </div>
+    </div>  -->
 
-             
+    <!-- Left and right controls -->
+   <!--  
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <span class="sr-only">Next</span>
+    </a>
+    
+  </div>
+  {% else %}
+  <div class="item active" style="padding-top: 15px;margin-left: 60px">
+        <img  src="{{ produit.logo.url }}"  alt="" style="width: 500px;height: 400px">
+      </div>
+
+  {% endif %}  -->
+<!-- test  -->
+<div class="thumbnail" style="border: outset;height: 460px;width: 500px;float: right;"  >
+ <img id="main_image" src="{{ produit.logo.url }}"  alt="" style="padding: 10px;width: 500px;height: 450px">
+</div>
+<div class="thumbnail row" style=" width: 500px;float: right;margin-right: 0px;background-color: #cccccc">
+ <div class="col-md-3" >
+ <img  src="{{ produit.logo.url }}"  alt="" style="width: 100px;height: 100px;">
+ </div> 
+ <div class="col-md-3"> 
+{% if produit.logo1 %} 
+       
+<img  src="{{ produit.logo1.url }}" style="width: 100px;height: 100px;">
+               
+{% endif %}
+</div> 
+<div class="col-md-3">
+{% if produit.logo2 %} 
+      
+<img  src="{{ produit.logo2.url }}" style="width: 100px;height: 100px">
+              
+{% endif %}
+</div class="col-md-3"> 
+<div>
+{% if produit.logo3 %} 
+        
+<img  src="{{ produit.logo3.url }}" style="width: 100px;height: 100px">
+{% endif %}
+</div>
 </div>
 
 
 
-  </div>
+
+
+<script type="text/javascript">
+  $(document).ready(function() {
+  $(".thumbnail img").on('click',function() {
+    var var1 = $(this).attr('src');
+    console.log(var1);
+    $('#main_image').attr('src', var1).load(function() {});
+  });
+});
+</script>
+
+
+<!-- endtest -->
+
+</div>
+ <div class="col-md-6">
+        
+<a href="{% url 'boutique:detail' produit.boutique.id %}" style="float: right;color: black;"> <span class="glyphicon glyphicon-circle-arrow-left"></span> back </a>
+<div style="padding:55px" >
+<div style="float: right;">
+<form action="{% url 'boutique:delete_produit' produit.boutique.id produit.id %}" method="post" style="display: inline;">
+        {% csrf_token %}
+        <input type="hidden" name="produit_id" value="{{ produit.id }}" />
+        <button type="submit" style="border-radius: 12px;background-color:#FFDEAD;" class="btn btn-default btn-xs" onclick="return confirm('Are you sure ???? ')">
+            <span class="glyphicon glyphicon-remove"></span>&nbsp; Delete
+        </button>
+
+    </form>
+
+    <form action="{% url 'boutique:post_update' produit.id %}" method="get" style="display: inline;">
+        {% csrf_token %}
+        <input type="hidden" name="produit_id" value="{{ produit.id }}" />
+        <button type="submit" style="border-radius: 12px;background-color: #f5f5c6" class="btn btn-default btn-xs">
+            <span class="glyphicon glyphicon-pencil"></span>&nbsp; Modify
+        </button>
+
+    </form>
+
+    <form action="{% url 'boutique:dupliquer'  produit.id %}" method="post" style="display: inline;">
+        {% csrf_token %}
+        <input type="hidden" name="produit_id" value="{{ produit.id }}" />
+        <button type="submit" style="border-radius: 12px; background-color: #FFFFE1" class="btn btn-default btn-xs">
+            <span class="glyphicon glyphicon-plus"></span>&nbsp; Duplicate
+        </button>
+
+    </form>
+</div>
+
+        <div class="panel panel-default" >
+                <div class="panel-body">  
+                <h2> <em>{{ produit.title }}</em> </h2>
+                <div id="trait_dessus"><hr></div>    
+                <h4> Overview </h4>
+               <li>  {{produit.typeProduit}} </li> 
+               <li> category : {{produit.categorie}} </li>
+               <li> gender : {{produit.Genre}} </li>
+               <li>{{ produit.pour }}</li>
+               <li> created at {{produit.created}} </li>
+               <li> {{produit.prix}} Dt </li>
+               <h3 style="font-weight: bold;"> {{produit.descreption}} </h3>
+                <div class="tags">
+                    {% for tag in produit.tags.all %}
+                       <span class="label label-primary">{{tag}}</span></a>
+                    {% endfor %}
+                </div>
+
+                    
+             </div>
+             </div>
+
+
+       <a href="{% url 'discover:boutique' produit.id %}" style="margin-left: 170px">
+        <img src="{{ produit.boutique.logo.url }}" style="width: 150px;height: 100px;border: inset;">  
+        {{produit.boutique.name}} </a>
+             
+        </div>
+
+
+
 
 
  </div>
+</div>
 
-</div> 
 
   {% if error_message %}
     <p>{{error_message}}</p>
@@ -90,37 +220,7 @@
  <div class="modal-body">
 
       
-    <div class="login">
-     
-      <form method="post" action="{% url 'login_userM' %}?username={{ produit.boutique.user.username }}&url={{ produit.id }}&objet={{ produit.title }}" role="form">
-       {% csrf_token %} 
-        <div class="form-group{% if form.username.errors %} has-error{% endif %}">
-          
-          <input type="text" class="form-control" id="username" name="username">
-          {% for error in form.username.errors %}
-            <label class="control-label">{{ error }}</label>
-          {% endfor %}
-        </div>
-        <div class="form-group{% if form.password.errors %} has-error{% endif %}">
-          
-          <input type="password" class="form-control" id="password" name="password">
-          {% for error in form.password.errors %}
-            <label class="control-label">{{ error }}</label>
-          {% endfor %}
-        </div>
-        <div class="form-group">
-          <button type="submit" class="btn btn-default">Log in</button>
-          <a href="{% url 'signup' %}" class="btn btn-link">Sign up </a>
-        </div>
-
-<input class="form-control typeahead" type="hidden" id="to" name="to" value="{{ request.GET.username  }}">
-    
-      <input class="form-control typeahead" type="hidden" id="objet" name="objet" value="{{ request.GET.objet }}">
-      <input class="form-control typeahead" type="hidden" id="url" name="url" value="{{ request.GET.url }}">
-
-
-      </form>
-    </div> 
+   {% include 'authentication/loginFORmsg.html' %}
 
 
 

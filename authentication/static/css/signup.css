@@ -1,5 +1,6 @@
 body {
-  background-color: #fff3ff;
+  background-image:url('/static/img/amir.jpg');
+  background-size: cover;
   
 }
 
@@ -22,11 +23,12 @@ body {
   text-decoration: none;
 }
 
-.signup {
-  background-color: #f6f6f6;
-  width: 70%;
+.signup { 
+  /*background-color: rgba(92, 255, 231, 0.34);  */
+  width: 60%;
   border-radius: 7px;
   margin: 10px auto 0;
+  border: initial;
 }
 
 .signup {

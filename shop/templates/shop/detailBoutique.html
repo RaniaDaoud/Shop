@@ -25,7 +25,7 @@
                     
                     <img src="{{ boutique.logo.url }}" class="img-responsive" style="width:270px;height:200px">
                       <h3> {{ boutique.name }} </h3> 
-                       créee le {{ boutique.date }} 
+                       created at {{ boutique.date }} 
 
                        
                      <h4>   Description : {{commercant.description}} </h4>
@@ -37,6 +37,7 @@
                     
                   
                 </div>
+
             </div>
         </div>
 
@@ -44,13 +45,13 @@
         <div class="col-sm-8 col-md-9">
 
             <ul class="nav nav-pills" style="margin-bottom: 10px;">
-             <li role="presentation"><a href="{% url 'boutique:create_produit' boutique.id %}">Add New Produits</a></li>
+             <li role="presentation"><a href="{% url 'boutique:create_produit' boutique.id %}">Add New Product</a></li>
                  </ul>
 
             <div class="panel panel-default">
                 <div class="panel-body">
 
-                    <h3>All Products</h3>
+                    <h3>My Products</h3>
 
                     {% if error_message %}
                         <p><strong>{{ error_message }}</strong></p>
@@ -63,7 +64,7 @@
                             
                             <th>Status</th>
                             <th>Actions</th>
-                            <th>Date de creation</th>
+                            <th>Created at</th>
                         </tr>
                         </thead>
                         <tbody>

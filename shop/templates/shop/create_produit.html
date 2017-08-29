@@ -8,13 +8,13 @@
     
 
         <!-- Right produit Info -->
-        <div class="col-sm-8 col-md-9">
+        <div class="col-md-8 col-md-offset-2">
 
           
 
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <h3>Add a New produit</h3>
+                    <h3>Add product</h3>
                     {% if error_message %}
                         <p><strong>{{ error_message }}</strong></p>
                     {% endif %}
@@ -26,6 +26,54 @@
                      
                         <input type="hidden" name="boutique" value="{{ boutique }}">
                        {% include 'shop/form-template.html' %}  
+<!-- genre  -->
+
+<div class="form-group">
+    <div class="row">
+      <div class="col-md-12">
+        <label for="genre" class="col-md-2 control-label">Gender:</label>
+        <div class="col-md-10">
+<input type="radio" name="genre" value="Men & women" id="HommeFemme" checked>Men & women
+<input type="radio" name="genre" value="Men" id="homme"> Men
+<input type="radio" name="genre" value="Women" id="femme"> Women
+</div>
+</div>
+</div>
+</div>
+
+
+
+<!--  pour -->
+<div class="form-group">
+    <div class="row">
+      <div class="col-md-12">
+        <label for="pour" class="col-md-2 control-label">For:</label>
+        <div class="col-md-10">
+<input type="checkbox" name="pour" value="standard" id="standard" checked> Standard
+<input type="checkbox" name="pour" value="baby" id="bebe"> Baby
+<input type="checkbox" name="pour" value="child" id="enfant"> Child
+<input type="checkbox" name="pour" value="young" id="jeune"> Young
+<input type="checkbox" name="pour" value="adult" id="adulte"> Adult
+</div>
+</div>
+</div>
+</div>
+
+
+<!-- tags -->
+           <div class="form-group">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <label for="tags" class="col-md-2 control-label">Tags:</label>
+                      <div class="col-md-10">
+<input type="text" id="tags" name="tags" class="form-control" placeholder="Add tags here..." autocomplete="off">
+  <span class="hint">example : tag1, tag2, tag3 ....</span>
+
+                      </div>
+                    </div>
+                  </div>
+            </div> 
+
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
                                 <button type="submit" class="btn btn-success">Submit</button>

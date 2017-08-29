@@ -19,6 +19,8 @@
                     <input type="hidden" name="maxprice" value="{{ request.GET.maxprice }}"/>
                 
 </form> -->
+<font size="6" > <em style="margin-left: 2%;padding-bottom: 20px;font-style: italic;width: 300px" >Post : needs, ideas</em></font>
+<div id="trait_dessous"><hr></div>
 <div class="container-fluid songs-container">
 
 <div class="row">
@@ -29,38 +31,38 @@
             
         <div class="panel panel-default" >
 
-            <div class="panel-body" style="padding: 0px;padding-left:10px">
-                          <h3> Toutes les categories </h3>
+            <div class="panel-body" style="padding: 0px;padding-left:10px;height: 250px;">
+                          <h3>Category</h3>
 
                
  <form class="navbar-form navbar-left"  method="get" action="{% url 'searchPost' %}?{% for key, value in request.GET.items %}&{{ key }}={{ value }}{% endfor %}">
                     <div class="form-group">
        <div class="btn-group">
-<button class="button" type="submit" name="categorie1" value="" > Tous les posts ({{  Tous  }}) </button>
+<button class="button" type="submit" name="categorie1" value="" > All posts({{  Tous  }}) </button>
 {% if Bijoux > 0 %}
-<button class="button" type="submit" name="categorie1" value="Bijoux" > Bijoux ({{  Bijoux  }}) </button>
+<button class="button" type="submit" name="categorie1" value="jewelry" > Jewelry({{  Bijoux  }}) </button>
 {% else %}
-<button class="button" type="button" name="categorie1" value="Bijoux" > Bijoux ({{  Bijoux  }}) </button>
+<button class="button" type="button" name="categorie1" value="jewelry" > Jewelry({{  Bijoux  }}) </button>
 {% endif %}
 {% if Vetement > 0 %}
-<button class="button" type="submit" name="categorie1" value="Vetement" > Vetement ({{  Vetement  }}) </button>
+<button class="button" type="submit" name="categorie1" value="clothes" > Clothes({{  Vetement  }}) </button>
 {% else %}
-<button class="button" type="button" name="categorie1" value="Vetement" > Vetement ({{  Vetement  }}) </button>
+<button class="button" type="button" name="categorie1" value="clothes" > Clothes({{  Vetement  }}) </button>
 {% endif %}
 {% if Accessoires > 0 %}
-<button class="button" type="submit" name="categorie1" value="Accessoires" > Accessoires ({{  Accessoires  }}) </button>
+<button class="button" type="submit" name="categorie1" value="accessory" > Accessory({{  Accessoires  }}) </button>
 {% else %}
-<button class="button" type="button" name="categorie1" value="Accessoires" > Accessoires ({{  Accessoires  }}) </button>
+<button class="button" type="button" name="categorie1" value="accessory" > Accessory({{  Accessoires  }}) </button>
 {% endif %}
 {% if Art > 0 %}
-<button class="button" type="submit" name="categorie1" value="Art et collections" > Art et collections ({{  Art  }}) </button>
+<button class="button" type="submit" name="categorie1" value="arts & collections" > Art & collections({{  Art  }}) </button>
 {% else %}
-<button class="button" type="button" name="categorie1" value="Art et collections" > Art et collections ({{  Art  }}) </button>
+<button class="button" type="button" name="categorie1" value="arts & collections" > Art & collections({{  Art  }}) </button>
 {% endif %}
 {% if Maison > 0 %}
-<button class="button" type="submit" name="categorie1" value="Maison et ameublement" > Maison et ameublement ({{  Maison  }}) </button>
+<button class="button" type="submit" name="categorie1" value="furniture" > Home & Furnishings({{  Maison  }}) </button>
 {% else %}
-<button class="button" type="button" name="categorie1" value="Maison et ameublement" > Maison et ameublement ({{  Maison  }}) </button>
+<button class="button" type="button" name="categorie1" value="furniture" > Home & Furnishings({{  Maison  }}) </button>
 {% endif %}
 </div>
 
@@ -73,7 +75,7 @@
    </div>
 </div> 
 
-
+<a href="{% url 'posts' %}" style="margin-left: 100px;">Add new post</a>
     </div>
    
 

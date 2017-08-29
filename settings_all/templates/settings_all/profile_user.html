@@ -16,14 +16,19 @@
 {% endblock extrahead %}
 {% block body %}
   <div class="page-header">
+  {% if page_user.profile.get_screen_name == user %}
     <h1> Welcome to your profile {{ page_user.profile.get_screen_name }} {% if page_user.get_full_name %}<small>({{ page_user.username }})</small>{% endif %}</h1>
+  {% else %}
+  <h1> Welcome to profile {{ page_user.profile.get_screen_name }} {% if page_user.get_full_name %}<small>({{ page_user.username }})</small>{% endif %}</h1>
+  {% endif %}
   </div>
   <div class="col-md-8 col-md-offset-2">
   <div class="profile">
   <div class="col-md-4 user-profile">
       <div class="thumbnail">
-        <img src="{{ page_user.profile.get_picture }}" class="picture" style="border: inset;">
+        <img src="{{ page_user.profile.get_picture }}" class="picture" style="border: inset;width: 180px;height: 180px">
            <p style="padding-left: 100px"> {{ page_user.profile.get_screen_name }} </p>
+           <p style="padding-left: 100px"> {{page_user.profile.age}} years </p>
         <ul>
           {% if page_user.profile.job_title %}
           <li><span class="glyphicon glyphicon-briefcase"></span> {{ page_user.profile.job_title }}</li>
@@ -36,6 +41,11 @@
           {% endif %}
         </ul>
         </div>
+        <span class="btn btn-primary" style="margin-left: 80px">
+             <a href="{% url 'wishlist' page_user.id %}" style="color: white"> Wishlist 
+
+             </a>
+        </span>
       </div>
       </div>
     <div class="col-md-8"> 

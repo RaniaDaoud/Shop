@@ -20,15 +20,15 @@ from PIL import Image
 @login_required
 def profileR(request, username):
     print(username)
-    
+    user = request.user
     page_user = User.objects.get(username=username)
     posts = Post.objects.filter(user= page_user)
     
     
     data = {
         'page_user': page_user,
-        'posts':posts
-        
+        'posts':posts,
+        'user': user,
         }
     return render(request, 'settings_all/profile_user.html', data)
 

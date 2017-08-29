@@ -2,25 +2,146 @@
 {% load humanize %}
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'discover/css/tooltip.user.css' %}"/> 
-<div class="row">               
+<!--<script src="{% static 'wishlist/js/wish.js' %}"></script>  -->
+
+<div class="row">     
+
     {% for produit in produits %}
          {% if produit.is_favorite == True %}
 
-
-      <div class="col-md-3" style="padding-right: 0px">
+          
+      <div class="col-md-3"  style="padding-right: 0px">
 
     
        <div class="thumbnail"  >
-      
+       <style type="text/css">
+         .popover{
+          max-width :80%;
+         }
+       </style>
+    <!--  <span class="glyphicon glyphicon-star-empty" id={{produit.id}} ></span> -->
+    <!--
+<div class="collection-popover">
+  <a href="#" class="btn btn-sm btn-primary">Collect</a>
+  <div class="popover">
+    <ul class="list-group">
+
+        {% for wl in counter2 %}
+
+            <li class="list-group-item">
+                <label class="add-to-collection" data-product-id="{{ produit.id }}" data-collection-id="{{ w1.id }}">
+                    <input type="checkbox" {% if produit in w1.product.all %}checked{% endif %}>hi
+                    {{ w1.name }}
+                </label>
+            </li>
+        {% endfor %}
+    </ul>
+  </div>
+</div>   -->
+    <!--  Meeeeee  -->
+    
+ <!--     <a href="#" data-html="true" data-toggle="popover" class="glyphicon glyphicon-star-empty" title="Choose wishlist" data-content="<form role='form'  action='{% url 'add_to_wishlist' produit.id %}' method='post' id='wish'>
+                            {% csrf_token %}
+                                <div style='margin-left:10px'>
+                                <fieldset data-role='controlgroup'>
+                                  
+                                      {% for wl in counter2 %}
+                                          <div class='row'>
+    
+                <label  data-product-id='{{ produitt.id }}'' data-collection-id='{{ w1.id }}'>
+                          <input type='checkbox'{% if produit in w1.product.all %}checked{% endif %} name='{{ wl.name }}' id='checkbox-1a'>
+                                            {{ wl.name }} 
+                   </label>                        
+                                          </div>
+                                      {% endfor %}
+                                    </fieldset>
+                       <button type='submit'>ajouter </button>
+                                </div>
+                         </form>" ></a> -->
+   {% if request.user.is_authenticated %}                     
+   <a href="#" id="prod_{{produit.id}}" data-html="true"  data-toggle="popover" class="glyphicon glyphicon-star-empty" title="Choose wishlist" ></a> 
+  
+  
+   <div  id="aa_{{ produit.id }}"  class="hide " >  
+   
+  <form role="form" style="margin-left: 20px;margin-top: -20px;" action="{% url 'add_to_wishlist' produit.id %}" method="post" class="wish">
+            {% csrf_token %}
+               
+                <fieldset data-role="controlgroup">
+                        
+                      {% for wl in counter2 %}
+                         
+                      
+                          <div class="row">
+    <label  data-product-id="{{ produit.id }}" data-wish-id="{{ wl.id }}">                      
+        <input type="checkbox" name="{{ wl.name }}" {% if produit in wl.product.all %}checked {%endif %} id="checkbox-1a">
+                      {{ wl.name }} 
+   </label>                   
+ <!--                  
+<label  data-product-id="{{ produit.id }}" data-wish-id="{{ wl.id }}">
+{% if produit in wl.product.all %}
+          <input type="checkbox" checked name="{{ wl.name }}"  value="{{wl.name}}">
+                            {{ wl.name }} 
+ {% else %}  
+ <input type="checkbox"  name="{{ wl.name }}"  value="{{wl.name}}">
+                            {{ wl.name }}  
+       {%endif %}                                            
+   </label>   -->
+                     
+                          </div>
+                         
+                      {% endfor %}
+                    </fieldset>
+       <button type="submit" class="btn" style="margin-left: 30px">add</button>  
+               
+         </form>
+         </div> 
+  {% else %}
+  {% include 'discover/loginForWish.html' %}
+  {% endif %}         
+             <script>
+$(document).ready(function(){
+   // $('[data-toggle="popover"]').popover(); 
+  /* $.getJSON(url, function(result) {
+        if (result.success) {
+          $('.glyphicon-star-empty', self).toggleClass('active');
+        }
+      });  */
+  $("#prod_{{produit.id}}").popover({
+    html: true, 
+  content: function() {
+          return $('#aa_{{ produit.id }}').html();
+        }
+});    
+
+});
+</script>               
+                   
+<script type="text/javascript">
+  
+
+</script>
     <div style="float: right;">   {{ produit.created|naturaltime }} </div>
-
-
+ 
+    
 <form action="{% url 'discover:DetailView1' produit.id %}" method="get" style="display: inline;">
  
   <input type="hidden" name="produit_id" value="{{ produit.id }}" >
   <button type="submit" style="background: none">
      <img src="{{ produit.logo.url }}"  style="width:220px;height:150px;" class="img-responsive">
-      <h5>  {{ produit.title }}  </h5>
+      <h5>  {{ produit.title }}  
+
+      {% if produit.Genre == "Men & women" %}
+      <img src="{% static 'img/gender.png' %}" style="width: 15px;height: 15px">
+       
+      {% elif produit.Genre == "Men" %}
+      <i class="fa fa-male" style="color: black;"></i>
+      {% endif %}
+      {% if produit.Genre == "Women" %}
+      <i class="fa fa-female" style="color: black;"></i>
+      {% endif %}
+
+      </h5>
   </button>
    <input type="hidden" name="username" value="{{ produit.boutique.user }}"/>
    <input type="hidden" name="objet" value="{{ produit.title }}"/>
@@ -33,7 +154,8 @@
 
          
   <div class="caption">
-  <span class="btn btn-danger btn-xs" style="float: right;">{{produit.prix }} Dt</span>
+  
+  <span class="btn btn-danger btn-xs" style="float: right;height: 20px;">{{produit.prix }} Dt</span>
 
  
 
@@ -44,10 +166,46 @@
 
             
   
-    <div class="tooltip1">Par {{ produit.boutique.user }}
-  <a href="{% url 'discover:boutique' produit.id %}">  <span class="tooltiptext">From {{ produit.boutique.name }}</span> </a>
+    <div class="tooltip1">By {{ produit.boutique.user }}
+  <a href="{% url 'discover:boutique' produit.id %}">  <span class="tooltiptext">From {{ produit.boutique.name }}</span> 
+  </a> 
    </div>
+                <!-- amir  counter discover  -->
+ <!--  <div class="row" id="{{ produit.title }}" hidden>
+                        <form role="form"  action="{% url 'add_to_wishlist' produit.id %}" method="post">
+                            {% csrf_token %}
+                                <div style="padding:10px 20px;">
+                                  <fieldset data-role="controlgroup">
+                                  <legend>Choose wishlist: </legend>
+                                      {% for wl in counter2 %}
+                                          <div class="row">
+                                            <input type="checkbox" name="{{ wl.name }}" id="checkbox-1a">
+                                            {{ wl.name }} 
+                                          </div>
+                                      {% endfor %}
+                                    </fieldset>
+                                    <button type="submit" id="btnsub" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-btn-icon-left ui-icon-check">Submit</button>
+                                </div>
+                         </form>
+    </div>  -->
+     <script>
+$(document).ready(function() {
+   $('#{{ produit.id }}').on('mouseenter',function(){
+        $('#{{ produit.title }}').show();
+   });
+  /* $('#{{ produit.id }}').on('mouseleave',function(){
+        $('#{{ produit.title }}').hide();
+   }); */
+ $('#{{ produit.title }}').on('mouseleave',function(){
+        $('#{{ produit.title }}').hide();
+   });
+  /* $('#{{ produit.title }}').on('mouseenter',function(){
+        $('#{{ produit.title }}').show();
+   });  */ 
+  }); 
+</script>
 
+  
   <!--  <span class="price price-green">{{produit.prix }} Dt</span>-->
     
      
@@ -72,7 +230,6 @@
 
           {% endfor %}
           </div>
-
 
 <script type="text/javascript">
  

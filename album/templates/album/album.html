@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+
+{% load static %}
+
+<script type="text/javascript" src="{% static 'album/new_photo.js' %}"></script>
+<script type="text/javascript" src="{% static 'album/delete_photo.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'shop/css/photo_album.css' %}" />
+
+
+
+
+<span class="title">Album de {{ user }}</span>
+<span class="count">({{ photos.count }})</span>
+{% if request.user.utilisateur == user %}
+<span class="pull-right">
+<form role="form" method="post" action="{% url 'new_photo' %}" id="photo" enctype="multipart/form-data" >
+      {% csrf_token %}
+    <label for="file_input" class="btn btn-sm btn-default">Add photo</label>
+    <input type="file" class="form-control" id="file_input" name="image">
+</form>
+</span>
+{% endif %}
+<hr>
+<br>
+<div class="images"> 
+ {% include 'album/photo.html' with  photos=photos %}
+ </div>
+{% endblock body %}

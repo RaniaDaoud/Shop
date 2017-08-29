@@ -10,6 +10,7 @@ $(function () {
               'reaction': type
           },
           success: function (data) {
+            
             if (data.count > 0)
               $this.parent().siblings('.reactions').children('.badge').text(data.count);
             else

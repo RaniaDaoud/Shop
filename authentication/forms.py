@@ -4,6 +4,8 @@ from django.core.exceptions import ValidationError
 from django.forms import ModelForm, TextInput, Textarea, PasswordInput, FileInput, Select, CheckboxInput
 from projet3.settings import ALLOWED_SIGNUP_DOMAINS
 from .models import  Utilisateur
+from datetime import datetime
+
 
 
 def SignupDomainValidator(value):
@@ -69,11 +71,13 @@ class SignUpForm(forms.ModelForm):
         widget=forms.EmailInput(attrs={'class': 'form-control'}),
         required=True,
         max_length=75)
+    
+
 
     class Meta:
         model = User
         exclude = ['last_login', 'date_joined']
-        fields = ['username', 'email', 'password', 'confirm_password', ]
+        fields = ['username', 'email', 'password', 'confirm_password']
 
     def __init__(self, *args, **kwargs):
         super(SignUpForm, self).__init__(*args, **kwargs)
@@ -93,12 +97,18 @@ class SignUpForm(forms.ModelForm):
                 ['Passwords don\'t match'])
         return self.cleaned_data
 
+    def clean_date_of_birth(self):
+        age = self.cleaned_data['age']
+        
+        if age < 0:
+            raise forms.ValidationError('Must be positif')
+        return self.cleaned_data
 
 
 class BusinessUserForm(forms.ModelForm):
     class Meta:
         model = Utilisateur
-        fields = ['description', 'type', 'telephone']
+        fields = ['description', 'type', 'telephone', 'message']
         widgets = {
             'description': Textarea(attrs={'class': 'form-control'}),
             'type': Select(attrs={'class': 'form-control'})

@@ -1,17 +1,20 @@
 from django.db import models
 from django.contrib.auth.models import Permission, User
 import datetime
+from taggit.managers import TaggableManager
+#from wish_list.models import Wishlist
+
 
 now = datetime.datetime.now()
 def group_based_upload(instance, filename):
     return "image/media/{}/{}/{}".format(instance.user,instance.name,str(now)+' -- '+filename)
 
 class Boutique(models.Model):
-    name = models.CharField(max_length=250,verbose_name="Nom du Boutique")
+    name = models.CharField(max_length=250,verbose_name="Name")
     user = models.ForeignKey(User, default=1)
-    logo = models.ImageField(upload_to=group_based_upload,null=True, blank=True,verbose_name="Logo_Boutique")
+    logo = models.ImageField(upload_to=group_based_upload,null=True,verbose_name="Shop Logo")
     
-    
+    visitors = models.ManyToManyField(User, related_name="visiteurs")
     
     date = models.DateTimeField(auto_now_add=True,null=True)    
     
@@ -25,22 +28,29 @@ def group_based_upload_to(instance, filename):
     return "image/media/{}/{}/{}/{}".format(instance.boutique.user,instance.boutique.name,instance.title ,str(now)+' -- '+filename)
 
 class Produit(models.Model):
-    prix = models.IntegerField()
-    title = models.CharField(max_length=250)
-    descreption = models.CharField(max_length=250)
-    logo = models.ImageField(upload_to=group_based_upload_to,null=True)
+    
+    prix = models.IntegerField(null=True, verbose_name="Price")
+    title = models.CharField(max_length=250,verbose_name="Name")
+    descreption = models.CharField(max_length=250, verbose_name="Description")
+    logo = models.ImageField(upload_to=group_based_upload_to,null=True,verbose_name="Principal photo")
     logo1 = models.ImageField(upload_to=group_based_upload_to,default=None, blank=True)
     logo2 = models.ImageField(upload_to=group_based_upload_to,null=True, blank=True)
     logo3 = models.ImageField(upload_to=group_based_upload_to,null=True, blank=True)
-    boutique = models.ForeignKey(Boutique, on_delete=models.CASCADE)
+    boutique = models.ForeignKey(Boutique, on_delete=models.CASCADE , verbose_name="Shop")
     is_favorite = models.BooleanField(default=False)
-    choix = (('Tous les produits','Tous les produits'),('Bijoux','Bijoux'),('Maison et ameublement','Maison et ameublement'),('Vetement','Vetement'),('Art et collections','Art et collections'),('Accessoires','Accessoires'))
-    categorie = models.CharField(max_length=250,choices=choix,default=None)
-    typeProduit = models.CharField(max_length=250,choices=(('Faits à main','Faits à main'),('Vintage','Vintage')),default=None)
+    choix = (('All products','All products'),('Jewelry','Jewelry'),('Home & Furnishings','Home & Furnishings'),('Clothes','Clothes'),('Art & collections','Art & collections'),('Accessoires','Accessoires'))
+    categorie = models.CharField(max_length=250,choices=choix,default=None, verbose_name="Category")
+    typeProduit = models.CharField(max_length=250,choices=(('Handmade','Handmade'),('Vintage','Vintage')),default=None, verbose_name="Type")
     created = models.DateTimeField(auto_now_add=True, null=True)
    # updated = models.DateTimeField(auto_now_add=False, auto_now=True , default=None)
-    quantite = models.IntegerField(default=None)
+    quantite = models.IntegerField(default=None, verbose_name="Quantity")
+    Genre = models.CharField(max_length=250,choices=(('Men & women','Men & women'),('Men','Men'),('Women','Women')),null=True, verbose_name="Gender")
+    options = (('standard','standard'),('baby','baby'),('child','child'),('young','young'),('adult','adult')) 
+    pour = models.CharField(max_length=250,choices=options,null=True, verbose_name="For")
+    
+    
 
+    tags = TaggableManager()
 
     def __str__(self):  # __unicode__ on Python 2
         return self.title
@@ -63,4 +73,5 @@ class Produit(models.Model):
     class Meta:
         ordering = ('title',)
 
-
+    def get_absolute_url(self):
+        return self.logo.url

@@ -68,10 +68,12 @@ def create_boutique(request):
         return render(request, 'authentication/login.html')
     else:
         form = BoutiqueForm(request.POST or None, request.FILES or None)
+        #logo = request.POST.get('logo')
         if form.is_valid():
             boutique = form.save(commit=False)
             boutique.user = request.user
             boutique.logo = request.FILES['logo']
+            #boutique.logo = logo
             file_type = boutique.logo.url.split('.')[-1]
             file_type = file_type.lower()
             if file_type not in IMAGE_FILE_TYPES:
@@ -98,9 +100,12 @@ def delete_boutique(request, boutique_id):
 
 @requires_csrf_token
 def create_produit(request, boutique_id):
-    if(request.method == 'POST'):
+    if request.method == 'POST':
         form = ProduitForm(request.POST or None, request.FILES or None)
+        tags_list = request.POST.get('tags').split(', ')
         boutique = get_object_or_404(Boutique, pk=boutique_id)
+        genre = request.POST.get('genre')
+        liste = request.POST.getlist('pour')
         if form.is_valid():
             boutiques_produits = boutique.produit_set.all()
             for s in boutiques_produits:
@@ -113,8 +118,16 @@ def create_produit(request, boutique_id):
                     return render(request, 'shop/create_produit.html', context)
             produit = form.save(commit=False)
             produit.boutique = boutique
+            produit.Genre = genre
+             
+            for q in liste :
+                produit.pour = q
 
             produit.save()
+
+            if len(tags_list) <= 15:
+                for tag in tags_list:
+                    produit.tags.add(tag)
             return render(request, 'shop/detailBoutique.html', {'boutique': boutique})
     else:
         form = ProduitForm()
@@ -159,25 +172,44 @@ def dupliquer(request,  produit_id):
     return redirect('/boutique/detail/'+str(produit.boutique.id))
 
 
-def post_update(request, produit_id):
+def post_update(request, produit_id): 
     instance = get_object_or_404(Produit, id=produit_id)
     form = ProduitForm(request.POST or None, request.FILES or None, instance=instance)
-    if form.is_valid():
-        instance = form.save(commit=False)
-        #instance.logo = form.cleaned_data["logo"]
-        #instance.logo1 = form.cleaned_data["logo1"]
-        instance.logo1 = request.POST.get('logo1') or instance.logo1
-        instance.logo2 = request.POST.get('logo2') or instance.logo2
-        instance.logo3 = request.POST.get('logo3') or instance.logo3
-        instance.save()
-        return HttpResponseRedirect('/boutique/detail/'+str(instance.boutique.id))   
-    context = {
+    if request.method == 'POST' :
+        
+        genre = request.POST.get('genre')
+        liste = request.POST.getlist('pour')
+        print(liste)
+        tags_list = request.POST.get('tags').split(', ')
+        print(tags_list)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            #instance.logo = form.cleaned_data["logo"]
+            #instance.logo1 = form.cleaned_data["logo1"]
+            instance.logo1 = request.POST.get('logo1') or instance.logo1
+            instance.logo2 = request.POST.get('logo2') or instance.logo2
+            instance.logo3 = request.POST.get('logo3') or instance.logo3
+            instance.Genre = genre
+            print(instance.Genre)
 
-    "form" : form,
+            for q in liste :
+                instance.pour = q
+            if len(tags_list) <= 15:
+                    instance.tags.clear()
+                    for tag in tags_list:
+                        instance.tags.add(tag)
+            instance.save()
+            return HttpResponseRedirect('/boutique/detail/'+str(instance.boutique.id))  
+    else :
+                
+        context = {
 
-   
-    }    
-    return render(request, "shop/create_produit.html", context)
+        "form" : form,
+        'tags': instance.tags.all()
+       
+        }    
+
+        return render(request, "shop/create_produit.html", context)
 
 
 

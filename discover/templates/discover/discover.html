@@ -3,158 +3,152 @@
 
 <!--           Raniiiiiiiiiiiiiiiiiiiiiiiiiia             -->
 {% block body %}
-<!-- <ul class="nav nav-pills" style="margin-bottom: 10px;">  -->
+
+  
 
 
-<div class="container-fluid songs-container">
+<style type="text/css">
+  #trait_dessus
+{
+  color:black;
+/*border: 1px solid #000; */
 
-<div class="row">
-
- <div class="col-sm-4 col-md-3">
-
-<!--
-  <button class="btnM" type="submit" name="creat" value="croissant" ><i class="fa fa-home"></i> Post and Products  </button>
-    <button class="btnM" type="submit" name="creat" value="croissant" ><i class="fa fa-home"></i> Posts  </button> 
-    <button class="btnM " type="submit" name="creat" value="croissant" ><i class="fa fa-home"></i> Products ({{  Tous  }}) </button>   
- 
-  -->
-
-
-
-<ul class="accordion-menu" style="padding: 0px">
-<li>
-   <div class="dropdown"> 
-    <button class="btnF" style="background-color: transparent; border: none;" type="submit" name="creat" value="croissant" ><i class="fa fa-home" aria-hidden="true"></i> Posts and Products  </button>      
-    </div> 
-    </li>
-    <div class="dropdown"> 
-    <button class="btnF" style="background-color: transparent; border: none;" type="submit" name="creat" value="croissant" ><i class="fa fa-home" aria-hidden="true"></i> Post  </button>      
-    </div> 
-    <div class="dropdown"> 
-    <button class="btnF" style="background-color: transparent; border: none;" type="submit" name="creat" value="croissant" ><i class="fa fa-home" aria-hidden="true"></i> Products  </button>      
-    </div> 
-  <li>
-    
-
-    <div class="dropdownlink"><i class="fa fa-road" aria-hidden="true"></i> Pertinence par
-      <i class="fa fa-chevron-down" aria-hidden="true"></i>
-    </div>
-    <ul class="submenuItems">
-     <form class="navbar-form navbar-left"  method="get" action="{% url 'discover:filter2' %}?{% for key, value in request.GET.items %}&{{ key }}={{ value }}{% endfor %}">
+} 
+</style>
+     
+    <font size="6" > <em style="margin-left: 2%;padding-bottom: 20px;font-style: italic;width: 300px" >Discover</em></font>
                
-  <div class="btn-group">
-  <button class="btnC" type="submit" name="creat" value="croissant" > Plus récent  </button>
-  <button class="btnC" type="submit" name="creat" value="decroissant" > Plus ancien  </button>
-  <button class="btnC" type="submit" name="creat" value="croissant1" > Prix croissant  </button>
-  <button class="btnC" type="submit" name="creat" value="decroissant2" > Prix decroissant </button> 
+   
+<div class="dropdown" style="float: right; margin-top: 7px;padding: 0px;margin-right: 50px">
+    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" style="background-color: transparent; padding-right:  70px; width: 100px "><i>Sorted by</i> 
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu menu" style="width: 100px">
+      <form class="navbar-form navbar-right" style="padding-right: 30px"  method="get" action="{% url 'discover:filter2' %}?{% for key, value in request.GET.items %}&{{ key }}={{ value }}{% endfor %}">
+               
+  <div class="btn-group1" style="float: left;">
+  <button class="button1" type="submit" name="creat" value="croissant" > More recent
+  </button>
+  <button class="button1" type="submit" name="creat" value="decroissant" > Older  </button>
+  <button class="button1" type="submit" name="creat" value="croissant1" > Ascending price
+ </button>
+  <button class="button1" type="submit" name="creat" value="decroissant2" >Descending price </button> 
   </div>                                                      
                     <input type="hidden" name="recherche" value="{{ request.GET.recherche }}"/>
+                    <input type="hidden" name="Genre" value="{{ request.GET.Genre }}"/>
+                   
                     <input type="hidden" name="catego" value="{{ request.GET.catego }}"/>
                     <input type="hidden" name="type0" value="{{ request.GET.type0 }}"/>
                     <input type="hidden" name="minprice" value="{{ request.GET.minprice }}"/>
                     <input type="hidden" name="maxprice" value="{{ request.GET.maxprice }}"/>
-                
+                    
+
 </form>
-      <li><a href=""></a></li>
     </ul>
-  </li>
-  <li>
-  <div class="dropdownlink"><i class="fa fa-paper-plane" aria-hidden="true"></i> Filter by category
-      <i class="fa fa-chevron-down" aria-hidden="true"></i>
-    </div>
-    <ul class="submenuItems" style="padding: 0px">
-    
-        
-                          
- <form class="navbar-form navbar-left"   method="get" action="{% url 'discover:filter2' %}?{% for key, value in request.GET.items %}&{{ key }}={{ value }}{% endfor %}">
-               <div class="form-group">     
+  </div>
+  
+
+  
+
+<!--  genre   -->
+<div class="dropdown" style="float: right;margin-top: 7px">
+    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" style="background-color: transparent; padding-right:  70px; width: 100px "><i> Gender</i>
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu" style="width: 90px">
+      <form class="navbar-form navbar-right" style="padding-right: 40px"  method="get" action="{% url 'discover:filter2' %}?{% for key, value in request.GET.items %}&{{ key }}={{ value }}{% endfor %}">
+               
+  <div class="btn-group1" style="float: left;">
+  <button class="button1" type="submit" name="Genre" value="Men & women" > Men & women
+  </button>
+  <button class="button1" type="submit" name="Genre" value="Men" > Men  </button>
+  <button class="button1" type="submit" name="Genre" value="Women" > Women </button> 
+  
+  </div>                                                      
+                    <input type="hidden" name="recherche" value="{{ request.GET.recherche }}"/>
+                    
+                    <input type="hidden" name="pour" value="{{ request.GET.pour }}"/>
+                    <input type="hidden" name="creat" value="{{ request.GET.creat }}"/>
+                    <input type="hidden" name="catego" value="{{ request.GET.catego }}"/>
+                    <input type="hidden" name="type0" value="{{ request.GET.type0 }}"/>
+                    <input type="hidden" name="minprice" value="{{ request.GET.minprice }}"/>
+                    <input type="hidden" name="maxprice" value="{{ request.GET.maxprice }}"/>
+                    
+
+</form>
+    </ul>
+  </div>  
+<div id="trait_dessous"><hr></div>
+<div class="container-fluid songs-container">
+<div class="row">
+
+  
+
+       <div class="col-sm-4 col-md-3">
+           
+        <div class="panel panel-default" >
+
+            <div class="panel-body" style="padding: 0px;padding-left:10px">
+                          <h4> Category 
+
+  <span class="glyphicon glyphicon-chevron-down" data-toggle="tooltip" data-placement="right" title="You can mix the search with the different filters" style="float: right;"></span>
+
+  </h4>             
+ <form class="navbar-form navbar-left"  method="get" action="{% url 'discover:filter2' %}?{% for key, value in request.GET.items %}&{{ key }}={{ value }}{% endfor %}">
+                    <div class="form-group">
        <div class="btn-group">
-  <button class="btnC " type="submit" name="catego" value="Tous les produits" > Tous les produits ({{  Tous  }}) </button> 
+<button class="button" type="submit" name="catego" value="All products" > All products({{  Tous  }}) </button>
 {% if Bijoux > 0 %}
-<button class="btnC " type="submit" name="catego" value="Bijoux" > Bijoux ({{  Bijoux  }}) </button>
+<button class="button" type="submit" name="catego" value="Jewelry" > Jewelry({{  Bijoux  }}) </button>
 {% else %}
-<button class="btnC " type="button" name="catego" value="Bijoux" > Bijoux ({{  Bijoux  }}) </button>
+<button class="button" type="button" name="catego" value="Jewelry" > Jewelry({{  Bijoux  }}) </button>
 {% endif %}
 {% if Vetement > 0 %}
-<button class="btnC " type="submit" name="catego" value="Vetement" > Vetement ({{  Vetement  }}) </button>
+<button class="button" type="submit" name="catego" value="Clothes" >Clothes({{  Vetement  }}) </button>
 {% else %}
-<button class="btnC " type="button" name="catego" value="Vetement" > Vetement ({{  Vetement  }}) </button>
+<button class="button" type="button" name="catego" value="Clothes" >Clothes({{  Vetement  }}) </button>
 {% endif %}
 {% if Accessoires > 0 %}
-<button class="btnC" type="submit" name="catego" value="Accessoires" > Accessoires ({{  Accessoires  }}) </button>
+<button class="button" type="submit" name="catego" value="Accessoires" >Accessories({{  Accessoires  }}) </button>
 {% else %}
-<button class="btnC" type="button" name="catego" value="Accessoires" > Accessoires ({{  Accessoires  }}) </button>
+<button class="button" type="button" name="catego" value="Accessoires" >Accessories({{  Accessoires  }}) </button>
 {% endif %}
 {% if Art > 0 %}
-<button class="btnC" type="submit" name="catego" value="Art et collections" > Art et collections ({{  Art  }}) </button>
+<button class="button" type="submit" name="catego" value="Art & collections" > Art & collections({{  Art  }}) </button>
 {% else %}
-<button class="btnC" type="button" name="catego" value="Art et collections" > Art et collections ({{  Art  }}) </button>
+<button class="button" type="button" name="catego" value="Art & collections" >  Art & collections({{  Art  }}) </button>
 {% endif %}
 {% if Maison > 0 %}
-<button class="btnCC" type="submit" name="catego" value="Maison et ameublement" > Maison et ameublement ({{  Maison  }}) </button>
+<button class="button" type="submit" name="catego" value="Home & Furnishings" > Home & Furnishings({{  Maison  }}) </button>
 {% else %}
-<button class="btnC" type="button" name="catego" value="Maison et ameublement" > Maison et ameublement ({{  Maison  }}) </button>
+<button class="button" type="button" name="catego" value="Home & Furnishings" > Home & Furnishings({{  Maison  }}) </button>
 {% endif %}
-</div>  
 </div>
 
             <!--    <button type="submit" class="btn btn-default" style="margin-left: 75px">Submit</button>    -->
                     <input type="hidden" name="recherche" value="{{ request.GET.recherche }}"/>
+                     <input type="hidden" name="Genre" value="{{ request.GET.Genre }}"/>
+                    <input type="hidden" name="pour" value="{{ request.GET.pour }}"/>
                     <input type="hidden" name="creat" value="{{ request.GET.creat }}"/>
                      <input type="hidden" name="type0" value="{{ request.GET.type0 }}"/>
                      <input type="hidden" name="minprice" value="{{ request.GET.minprice }}"/>
                     <input type="hidden" name="maxprice" value="{{ request.GET.maxprice }}"/>
-              
-</form>
-        
-      <li><a href="#"></a></li>
-      
-    </ul>
-  </li>
 
- <!--  Type  -->
-  <li>
-    <div class="dropdownlink"><i class="fa fa-motorcycle" aria-hidden="true"></i> Filter by type
-      <i class="fa fa-chevron-down" aria-hidden="true"></i>
-    </div>
-    <ul class="submenuItems">
-  
-      <form class="navbar-form navbar-left"  method="get" action="{% url 'discover:filter2' %}?{% for key, value in request.GET.items %}&{{ key }}={{ value }}{% endfor %}">
-                <div class="form-group">
-      <div class="btn-group">
-
-{% if Faits > 0 %}      
-<button class="btnC" type="submit" name="type0" value="Faits à main">  Faits à main ({{  Faits  }})  </button> 
-{% else %}
-<button class="btnC" type="button" name="type0" value="Faits à main">  Faits à main ({{  Faits  }})  </button>
-{% endif %}
-{% if Vintage > 0 %}
-<button class="btnC" type="submit" name="type0" value="Vintage" > Vintage ({{  Vintage  }})   </button>  
-{% else %}
-<button class="btnC" type="button" name="type0" value="Vintage" > Vintage ({{  Vintage  }})   </button>
-{% endif %}
-
-      </div>
-                               
-                               
-                    <input type="hidden" name="recherche" value="{{ request.GET.recherche }}"/>
-                    <input type="hidden" name="catego" value="{{ request.GET.catego }}"/>
-                    <input type="hidden" name="minprice" value="{{ request.GET.minprice }}"/>
-                    <input type="hidden" name="maxprice" value="{{ request.GET.maxprice }}"/>
                 </div>
 </form>
+   </div>
+</div> 
 
-       <li><a href="#"></a></li>
-    </ul>
-  </li>
+    <!--                 2222222222222222222222     -->
 
- <!--     Prix     -->
-  <li>
-    <div class="dropdownlink"><i class="fa fa-quote-left" aria-hidden="true"></i> Filter by price
-      <i class="fa fa-chevron-down" aria-hidden="true"></i>
-    </div>
-    <ul class="submenuItems" style="padding: 20px">
-     <form  method="get" action="{% url 'discover:filter2' %}">
+
+
+        <div class="panel panel-default">
+          <div class="panel-body" style="padding: 0px ;padding-left:10px">
+                  <h4> Price (Dt) </h4>
+
+                       
+
+                                      
+<form  method="get" action="{% url 'discover:filter2' %}">
                 <div class="form-group">
 <div class="slider slider-horizontal" style="width: 200px; margin-left: 10px" > 
 <input id="ex2" type="text" name="rangeInput" style="width: 250px;height: 50px; " class="span2" style="margin-bottom: 50px;" value="" data-slider-min="{{minx}}" data-slider-max="{{maxx}}" data-slider-step="" data-slider-id="RC"  ></div></br>
@@ -164,9 +158,13 @@
 
                     <input type="submit" class="btn btn-default" data-inline="true" value="submit" style="margin-left: 100px">
                     <input type="hidden" name="recherche" value="{{ request.GET.recherche }}"/>
+                    <input type="hidden" name="Genre" value="{{ request.GET.Genre }}"/>
+                    <input type="hidden" name="pour" value="{{ request.GET.pour }}"/>
+
                     <input type="hidden" name="catego" value="{{ request.GET.catego }}"/>
                     <input type="hidden" name="type0" value="{{ request.GET.type0 }}"/>
                     <input type="hidden" name="creat" value="{{ request.GET.creat }}"/>
+                    
     </div></form>    
 
 
@@ -179,44 +177,101 @@
        value:[{{minx}},{{maxx}} ]
        });
    </script>  
-      
-    </ul>
-  </li>
-
-  
-</ul>
 
 
+                                        </div>
+                                   </div>
+    <!--            3333333333333333333333   -->
+<div class="panel panel-default">
 
 
 
+<div class="panel-body" style="padding: 0px;padding-left:10px">
+      <h4> Type of product </h4>
 
-      
-  
+<form class="navbar-form navbar-left"  method="get" action="{% url 'discover:filter2' %}?{% for key, value in request.GET.items %}&{{ key }}={{ value }}{% endfor %}">
+                <div class="form-group">
+      <div class="btn-group">
+{% if Faits > 0 %}      
+<button class="button" type="submit" name="type0" value="Handmade"> Handmade({{  Faits  }})  </button> 
+{% else %}
+<button class="button" type="button" name="type0" value="Handmade"> Handmade({{  Faits  }})  </button>
+{% endif %}
+{% if Vintage > 0 %}
+<button class="button" type="submit" name="type0" value="Vintage" > Vintage({{  Vintage  }})   </button>  
+{% else %}
+<button class="button" type="button" name="type0" value="Vintage" > Vintage({{  Vintage  }})   </button>
+{% endif %}
 
+      </div>
+                               
+                               
+    <input type="hidden" name="recherche" value="{{ request.GET.recherche }}"/>
+    <input type="hidden" name="Genre" value="{{ request.GET.Genre }}"/>
+    <input type="hidden" name="pour" value="{{ request.GET.pour }}"/>
+    <input type="hidden" name="catego" value="{{ request.GET.catego }}"/>
+    <input type="hidden" name="minprice" value="{{ request.GET.minprice }}"/>
+    <input type="hidden" name="maxprice" value="{{ request.GET.maxprice }}"/>
 
+                </div>
+</form>
+
+               
+</div>
+</div>
+<!-- 444444444  -->
+<div class="panel panel-default" >
+
+            <div class="panel-body" style="padding: 0px;padding-left:10px">
+                          <h4> For  </h4>
+
+               
+ <form class="navbar-form navbar-left"  method="get" action="{% url 'discover:filter2' %}?{% for key, value in request.GET.items %}&{{ key }}={{ value }}{% endfor %}">
+                    <div class="form-group">
+       <div class="btn-group">
+{% if Standard > 0 %}
+<button class="button" type="submit" name="pour" value="standard" > Standard ({{  Standard  }}) </button>
+{% else %}
+<button class="button" type="button" name="pour" value="standard" > Standard ({{  Standard  }}) </button>
+{% endif %}
+{% if bebe > 0 %}
+<button class="button" type="submit" name="pour" value="baby" > Baby ({{  bebe  }}) </button>
+{% else %}
+<button class="button" type="button" name="pour" value="baby" > Baby ({{  bebe  }}) </button>
+{% endif %}
+{% if enfant > 0 %}
+<button class="button" type="submit" name="pour" value="child" > Child ({{  enfant  }}) </button>
+{% else %}
+<button class="button" type="button" name="pour" value="child" > Child ({{  enfant  }}) </button>
+{% endif %}
+{% if jeune > 0 %}
+<button class="button" type="submit" name="pour" value="young" > Young ({{  jeune  }}) </button>
+{% else %}
+<button class="button" type="button" name="pour" value="young" > Young ({{  jeune  }}) </button>
+{% endif %}
+{% if adulte > 0 %}
+<button class="button" type="submit" name="pour" value="adult" > Adult ({{  adulte  }}) </button>
+{% else %}
+<button class="button" type="button" name="pour" value="adult" > Adult ({{  adulte  }}) </button>
+{% endif %}
 
 </div>
-   
+
+            <!--    <button type="submit" class="btn btn-default" style="margin-left: 75px">Submit</button>    -->
+                    <input type="hidden" name="recherche" value="{{ request.GET.recherche }}"/>
+
+                    <input type="hidden" name="creat" value="{{ request.GET.creat }}"/>
+                     <input type="hidden" name="type0" value="{{ request.GET.type0 }}"/>
+                     <input type="hidden" name="minprice" value="{{ request.GET.minprice }}"/>
+                    <input type="hidden" name="maxprice" value="{{ request.GET.maxprice }}"/>
+
+                </div>
+</form>
+   </div>
+</div> 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    </div>
    
 
 <!-- liste des produits -->
@@ -237,11 +292,10 @@
                       
 
                  </div>
-                 </div>
 
-        </div>
-</div>
+                 
 
+       
 
 
 
